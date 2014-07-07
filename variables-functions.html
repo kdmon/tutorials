@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+
+  <head>
+    <script>
+      /* Defining variables
+      
+        A variable is a name that holds a value.
+        
+        In javascript we declare variables with the keyword 'var',
+        for example: 
+        
+      */
+      
+      var name = "karl";
+    
+      // This creates a variable called name, which is set to karl.
+     
+      /* Variable types
+        
+        1. String (text) 
+        
+        The double quotes surrounding Ferrari are important to define 
+        a variable as a text (called string).
+      
+      */
+        
+      var carMake = "Ferrari";
+      
+      /* 2.Numbers
+      
+      We can also have variables that store numbers, such as:
+      
+      */
+      
+      var months = 12;
+      
+      /* This is called an integer variable.
+      
+      Notice, we don't have double quotes. 
+         
+      We can of course also define fractions:
+      
+      */
+      
+      var PI = 3.14;
+      
+      
+      /* Boolean (true or false) variables
+      
+        This is a special type that is used to store 
+        a program's 'state', e.g.:
+        
+        Lights are on or off.
+        User has answered yes or no.
+        Binary number is one or zero.
+        
+        For example:
+        
+      */
+      
+      var raining = false; //It is not raining (right now).
+      var sunny = true; // It is sunny (right now).
+      
+      
+      /* Conditions -- the if/else statements
+      
+      This is how you define logic in javascript,
+      and many other programming languages.
+      
+      For example, we might take different actions 
+      depending on the weather:
+      
+      if (sunny && !raining) { ... }
+      
+      This reads, if it is sunny and not raining, do something {...};
+      
+      The double ampersands means "and".
+      The exclamation mark means negation (not).
+      The thing within squiggly brackets is the code that will run if the condition is met. 
+
+      You can also chain condition statements together: 
+      
+      */
+      
+      if (sunny) {
+        alert("Wear Sun Screen");
+      } else if (raining) {
+        alert("Wear Sun Screen");
+      } else {
+        var overcast = true;
+      }
+      
+      /* These conditional statements goes through three tests
+         only executes one of the three options.
+         
+         Two first options (wear sunscreen and bring umbrella) are
+         calling the alert function to create a pop up notification
+         
+      */
+     
+     
+      /* Functions
+
+        Functions are an extremely useful feature of javascript.
+        
+        They allow you to define chunks of code that can be
+        executed repeatedly -- building blocks.
+        
+        For example, here is a simple function that brings
+        up a dialogue box: 
+      
+      */
+      
+      
+      function alertUser(message) {
+        alert(message);
+      }
+      
+      
+      /* This reads: alertUser is a function that
+         takes one parameter (input): 'message'.
+        
+        We can call the function directly from a HTML hyperlink by
+        assigning the href with javascript: followed by the name of the function:
+        
+        
+        <a href="javascript: alertUser('Hello there')">Say hello</a>
+        <a href="javascript: alertUser('See you later')">Say goodbye</a>
+        
+        Notice that in this example we execute the same function (alertUser)
+        But we pass in different parameters, so the behaviour of the function changes.
+        i.e. it gives a different message. 
+      */
+      
+    </script>
+    
+  </head>
+
+  <body>
+    <h1>1. Say hello</h1>
+    <a href="javascript: alertUser('Hello there computer')">Greet computer</a>
+    <h1>Say goodbye</h1>
+    <a href="javascript: alertUser('Bye bye computer')">See you later</a>
+  </body>
+
+</html>
