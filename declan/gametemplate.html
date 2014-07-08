@@ -79,13 +79,13 @@
         this.width = width;
         this.height = height;
         this.bodiesMap = {};
-        this.world = new b2World(new b2Vec2(0, 1), //gravity
+        this.world = new b2World(new b2Vec2(0, 10), //gravity
           true //allow sleep
         );
         this.fixDef = new b2FixtureDef;
         this.fixDef.density = 1.0;
-        this.fixDef.friction = 1;
-        this.fixDef.restitution = 0.7;
+        this.fixDef.friction = 10;
+        this.fixDef.restitution = 0.4;
       }
       bTest.prototype.update = function() {
         var start = Date.now();
@@ -156,7 +156,7 @@
         var bodyDef = new b2BodyDef;
         if (entity.rolling) {
           
-          bodyDef.angularDamping = 1.2;
+          bodyDef.angularDamping = 50;
         }
         if (entity.type == 'fixture') {
           
@@ -466,7 +466,7 @@
       var framecount = 0;
 
       function init() {
-        score = 0;
+
         scene.reachedTarget = true;
         world = {};
         // 1. Add static bodies
@@ -707,11 +707,6 @@
       ctx.translate(-(box.bodiesMap["player"].GetPosition().x)/scale + scene.camerax, -( box.bodiesMap["player"].GetPosition().y)/scale + scene.cameray);*/
         //ctx.drawImage(bg, 0, 0, 1920, 1200, -canvasWidth/scale/2 - box.bodiesMap["player"].GetPosition().x/5, -15 + canvasHeight/scale/2 - box.bodiesMap["player"].GetPosition().y/5,  canvasWidth/scale*2, canvasHeight/scale*2);
         scene.draw();
-        ctx.globalAlpha = 0.1;
-        ctx.fillStyle = "yellow";
-        ctx.font = "1px Arial";
-        ctx.fillText(score, box.bodiesMap["player"].GetPosition().x - 1, box.bodiesMap["player"].GetPosition().y - 1);
-        ctx.fillText(objCount, box.bodiesMap["player"].GetPosition().x - 1, box.bodiesMap["player"].GetPosition().y - 2);
         ctx.restore();
       }
     </script>
