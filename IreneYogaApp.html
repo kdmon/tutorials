@@ -9,14 +9,12 @@
       var words = [{
         "class": "posture",
         "English": "Mountain",
-        "French": "La montagne",
         "Sanskrit": "Tadasana",
         "Image": "C:\Users\Irene Beldon\Desktop\App design course\Irene's App Photos\Mountain pose  Tadasana.JPG",
         "Benefits": "Brings lightness to the body.Relieves tension in back and shoulders",
       }, {
         "class": "posture",
         "English": "Cat",
-        "French": "Le chaÿÿý quatre pattes",
         "Sanskrit": "Marjaryasana",
         "image": "http://www.healtouch.com/yoga/cat.jpg",
         "Benefits": "Brings flexibility to the spine, strengthens wrists and shoulders, massages the digestive organs and improves digestion",
@@ -24,7 +22,6 @@
       }, {
         "class": "posture",
         "English": "Dog",
-        "French": "Le Chien",
         "Sanskrit": "Adho Mukha Svanasana",
         "Image": "http://farm4.staticflickr.com/3573/3403834407_3944874ff8_n.jpg",
         "Benefits": "Calms the brain, energises the body, helps relieve fatigue",
@@ -32,7 +29,6 @@
       }, {
         "class": "posture",
         "English": "Triangle",
-        "French": "La posture du triangle",
         "Sanskrit": "Trikonasana",
         "Image": "http://yoga.org.nz/postures/images/mainpage/triangle.jpg",
         "Benefits": "Brings stability and firmness to body and mind",
@@ -40,7 +36,6 @@
       }, {
         "class": "posture",
         "English": "Reverse triangle",
-        "French": "Le Triangle contraire",
         "Sanskrit": "Parivrtta Trikonasana",
         "Image": "http://health.indianetzone.com/yoga/hathyoga/images/hathyoga_091.jpg",
         "Benefits": "Increases flexibilty of the hips and spine, opens rib-cage,chest and heart",
@@ -48,7 +43,6 @@
       }, {
         "class": "posture",
         "English": "Cobbler pose",
-        "French": "Le cordonnier",
         "Sanskrit": "Baddha Konasana",
         "Image": "http://upload.wikimedia.org/wikipedia/commons/6/64/Baddha_konasana.jpg",
         "Benefits": "Brings life to the feet, moves the hips",
@@ -56,7 +50,6 @@
       }, {
         "class": "posture",
         "English": "Warrior 2",
-        "French": "Le guerrier/ La guerÿÿýre",
         "Sanskrit": "Virabhadrasana",
         "Image": "",
         "Benefits": "Strengthens the legs ,opens the front of the body, energises the whole person",
@@ -64,7 +57,6 @@
       }, {
         "class": "posture",
         "English": "Hero Pose",
-        "French": "",
         "Sanskrit": "Virasana",
         "Image": "",
         "Benefits": "",
@@ -80,7 +72,6 @@
       }, {
         "class": "posture",
         "English": "Warrior 1",
-        "French": "Le guerrier/ La guerrÿýre",
         "Sanskrit": "Virabhadrasana",
         "Image": "http://upload.wikimedia.org/wikipedia/commons/a/a6/Virabhadrasana_I_-_Warrior_Pose_I.jpg",
         "Benefits": "Strengthens the legs ,opens the front of the body, energises the whole person",
@@ -88,7 +79,6 @@
       }, {
         "class": "posture",
         "English": "Bridge",
-        "French": "La posture du pont",
         "Sanskrit": "Setu Bandha Sarvangasana",
         "Image": "http://www.yogason.com/setubandhasan.jpg",
         "Benefits": "Brings movement through whole body, opens up solar plexus",
@@ -96,7 +86,6 @@
       }, {
         "class": "posture",
         "English": "Tree pose",
-        "French": "La posture de l'arbre",
         "Sanskrit": "Vrkasana",
         "Image": "http://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Vrksasana.jpg/212px-",
         "Benefits": "Improves balance, brings calmness to mind and body",
@@ -104,7 +93,6 @@
       }, {
         "class": "posture",
         "English": "Cobra pose",
-        "French": "La posture du cobra",
         "Sanskrit": "Bhujangasana",
         "Image": "http://upload.wikimedia.org/wikipedia/commons/2/21/Bhujangasana.jpg",
         "Benefits": "Strengthens the back , opens front of body and chest",
@@ -112,7 +100,6 @@
       }, {
         "class": "posture",
         "English": "Sun Salutation",
-        "French": "La salutation du soleil",
         "Sanskrit": "Surya Namaskar",
         "video": "http://upload.wikimedia.org/wikipedia/commons/a/a3/Surya_namaskar.ogg",
         "Benefits": "Wakes up the whole body, increases mobility to hips and legs",
@@ -120,7 +107,6 @@
       }, {
         "class": "posture",
         "English": "Peacock",
-        "French": "Le paon",
         "Sanskrit": "Pincha Mayurasana",
         "Image": "",
         "Benefits": "Wakens the spine, brings aliveness to the body",
@@ -128,7 +114,6 @@
       }, {
         "class": "posture",
         "English": "Shoulderstand",
-        "French": "La posture sur les ýpaules",
         "Sanskrit": "Salamba Sarvangasana",
         "Image": "http://www.healthcare-natural.com/weight_loss/img/yoga1.jpg",
         "Benefits": "Brings balance and harmony to whole body",
@@ -144,7 +129,6 @@
       }, {
         "class": "posture",
         "English": "Child Pose",
-        "French": "La posture de l'enfant",
         "Sanskrit": "Pindasana",
         "Image": "http://www.divernetxtra.com/technique/pics/0404yoga2.jpg",
         "Benefits": "A restful posture",
@@ -155,10 +139,10 @@
         // this updates the words details page
         var translation = "<h1 style='color:red'>" + words[wordIndex].English + "</h1>";
         if (words[wordIndex].French) {
-          translation += "<h2 style='color:blue'>" + words[wordIndex].French + "</h2>";
+          translation += "<h2 style='color:green'>" + words[wordIndex].French + "</h2>";
         }
         if (words[wordIndex].Sanskrit) {
-          translation += "<h2 style='color:green'>" + words[wordIndex].Sanskrit + "</h2>";
+          translation += "<h2 style='color:blue'>" + words[wordIndex].Sanskrit + "</h2>";
         }
         if (words[wordIndex].image) {
           translation += '<img src="' + words[wordIndex].Image + '">';
@@ -192,18 +176,6 @@
             $("#wordList").append('<li><a data-role="button" href="javascript: showWord(' + i + ');"><img data-icon="true" src="' + words[i].image + '">' + words[i].English + '</a></li>');
           }
         }
-        $("#wordList").append('<li data-role="list-divider">Names of parts of the body</li>');
-        for (i = 0; i < words.length; i++) {
-          if (words[i].class == "body") {
-            $("#wordList").append('<li><a data-role="button" href="javascript: showWord(' + i + ');">' + words[i].English + '</a></li>');
-          }
-        }
-        $("#wordList").append('<li data-role="list-divider">Verbs</li>');
-        for (i = 0; i < words.length; i++) {
-          if (words[i].class == "verb") {
-            $("#wordList").append('<li><a data-role="button" href="javascript: showWord(' + i + ');">' + words[i].English + '</a></li>');
-          }
-        }
         // this makes sure the buttons are styled
         $("#wordList").listview("refresh");
       });
@@ -216,9 +188,7 @@
         <h1>Irene's Yoga App</h1>
       </div>
       <div data-role="content">
-        <img src="applogo.png" style="width:100%">
-         <a data-role="button" href="#Menu">Start</a>
-         
+        <img src="applogo.png" style="width:100%"> <a data-role="button" href="#Menu">Start</a>
       </div>
     </div>
     <div data-role="page" id="Menu">
@@ -227,7 +197,7 @@
       </div>
       <div data-role="content">
         <a data-role="button" href="#About">
-          <h3>What this app does</h3>
+          <h3>About this App</h3>
         </a>
         <a data-role="button" href="#Who">
           <h3>Who is it for</h3>
@@ -237,9 +207,7 @@
         </a>
         <a data-role="button" href="#Dictionary">
           <h3>Postures</h3>
-        </a>
-        <a href="#" data-rel="back" data-role="button">Back to Start </a> 
-     
+        </a> <a href="#" data-rel="back" data-role="button">Back to Start </a> 
       </div>
     </div>
     <div data-role="page" id="About">
@@ -253,16 +221,16 @@
     </div>
     <div data-role="page" id="Who">
       <div data-role="header"> <a href="#" data-rel="back" data-role="button">Back</a> 
-        <h1>Who would find it useful</h1>
+        <h1>Who is it for</h1>
       </div>
-      <div data-role="content">This app is designed for yoga practitioners who want a quick translation of terms from English into French which would be useful during a class or private study.</div>
+      <div data-role="content">This app is for anyone who wants</div>
       <div data-role="footer">
         <h1>&copy; I Beldon 2014</h1>
       </div>
     </div>
     <div data-role="page" id="How">
       <div data-role="header"> <a href="#" data-rel="back" data-role="button">Back</a> 
-        <h1>How to use the App</h1>
+        <h1>How to use the app</h1>
       </div>
       <div data-role="content"></div>
       <div data-role="footer">
@@ -271,7 +239,7 @@
     </div>
     <div data-role="page" id="Dictionary">
       <div data-role="header"> <a href="#" data-rel="back" data-role="button">Back</a> 
-        <h1>Dictionary</h1>
+        <h1>Yoga Postures</h1>
       </div>
       <div data-role="content">Open the button Click on any posture to give you the French translation as well as the Sanskrit name for the posture. Also included are the benefits that practice of the posture will bring. Click on the Back button to return to the list. <a href="#list" data-role="button">Postures</a>
       </div>
