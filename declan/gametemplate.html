@@ -6,8 +6,8 @@
     <title>Physics</title>
     <script src="Box2dWeb-2.1.a.3.js"></script>
     <script src="jquery-1.8.2.min.js"></script>
-    <script src="declan2.json"></script>
     <script src="stats.min.js"></script>
+    <script src="declanlevel.js"></script>
     
     <style>
       body {
@@ -362,17 +362,9 @@
         ctx.translate(this.x, this.y);
         ctx.rotate(this.angle);
         ctx.translate(-(this.x), -(this.y));
-        switch (this.texture) {
-          case "squid":
-            ctx.drawImage(img2, acount * 94, 0, 94, 50, this.x - this.radius, this.y - this.radius, this.radius * 2, this.radius * 2);
-            break;
-          case "squid2":
-            ctx.drawImage(img4, acount * 117, 0, 117, 57, this.x - this.radius, this.y - this.radius, this.radius * 2, this.radius * 2);
-            break;
-          case "cat":
-            ctx.drawImage(img5, acount % 2 * 345, 0, 345, 365, this.x - this.radius, this.y - this.radius, this.radius * 2, this.radius * 2);
-            break;
-          case "hidden":
+        switch (this.id) {
+          case "player":
+            ctx.drawImage(playerSprite, acount * 94, 0, 94, 50, this.x - this.radius, this.y - this.radius, this.radius * 2, this.radius * 2);
             break;
           default:
           break;
@@ -463,19 +455,12 @@
       var running = true;
       var start = false;
       var restart = false;
+      
        // textures
-      var img = new Image;
-      img.src = "texturepack2.png";
-      var img2 = new Image;
-      img2.src = "squid.png";
-      var img3 = new Image;
-      img3.src = "shark.png";
+
+      var playerSprite = new Image;
+      playerSprite.src = "playersprite.png";
       
-      var img4 = new Image;
-      img4.src = "squid2.png";
-      
-      var img5 = new Image;
-      img5.src = "cat-animation.png";
        // animation counters
       var acount = 0;
       var framecount = 0;
@@ -558,11 +543,7 @@
       }
 
       function movePlayer(x, y) {
-        /*
-      if (snd3.paused && Math.random() <0.1){
-        snd3 = new Audio(Math.random() < 0.9 ? "devabra.mp3" : "skratt.mp3");
-        snd3.play();
-      }*/
+
         var xcomp = box.bodiesMap["player"].GetPosition().x;
         var ycomp = box.bodiesMap["player"].GetPosition().y;
         scene.targetx = (x / scale / scene.zoom) - scene.camerax + xcomp;
@@ -634,7 +615,7 @@
           scene.cameray = (canvasHeight / scale / scene.zoom) / 2;
         }
       }
-      var explosion4 = {};
+      
 
       function step() {
         box.update();
@@ -645,36 +626,6 @@
         }
       }
 
-      function addObjects() {
-        // generate random floating objects
-        if (Math.random() > 0.90) {
-          var texture = textureList[parseInt(Math.random() * textureList.length)];
-          objCount++;
-          buildList["generated_item_" + objCount] = {
-            id: "generated_item_" + objCount,
-            x: world["player"].x + (Math.random() * 40) - 20,
-            y: world["player"].y + (Math.random() * 10) - 20,
-            radius: 0.5,
-            texture: texture,
-            type: "rolling",
-            angle: Math.random() * 360,
-            alpha: 1,
-            mass: 0.1,
-            lifespan: 15
-          };
-        }
-        // add new objects and set lifespan
-        var itemsBuilt = 0;
-        for (item in buildList) {
-          itemsBuilt++;
-          if (itemsBuilt > 10) break;
-          var newObj = buildList[item];
-          world[newObj.id] = Entity.build(newObj);
-          box.setBody(world[newObj.id]);
-          box.applyImpulse(newObj.id, newObj.impulseAngle ? newObj.impulseAngle : 0, newObj.impulseStrength ? newObj.impulseStrength : 0);
-          delete buildList[item];
-        }
-      }
 
       function cullObjects() {
         bodiesState = box.getState();
@@ -699,7 +650,7 @@
       }
 
       function moveObjects() {
-        if (!scene.reachedTarget && !world["player"].paralysed()) {
+        if (!scene.reachedTarget) {
           if (box.getSpeed("player") > 0.1) {
             box.setAngle("player", (box.getVelocityAngle("player") + 80) / 180 * Math.PI);
           }
@@ -969,7 +920,7 @@
             }
             framecount++;
             cullObjects();
-            //addObjects();
+            
             draw();
             step();
             //if (Math.random () > 0.95) 
@@ -989,11 +940,15 @@
           this.tileset.onload = $.proxy(this.renderLayers, this);
         },
         load: function(name) {
-          this.loadTileset(levelmap);
-          //           return $.ajax({
-          //             url: name + ".json",
-          //             type: "JSON"
-          //           }).done($.proxy(this.loadTileset, this));
+          
+          this.loadTileset (levelmap);
+          /*
+          return $.ajax({
+          url: name + ".json",
+          type: "JSON"
+        }).done($.proxy(this.loadTileset, this));
+        */
+        
         }
       };
       scene.load("level1");
