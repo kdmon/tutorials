@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+    <script>
+      var recipe = [{
+        name: "Chocolate sponge cake",
+        ingredients: [{
+          name: "Cocoa",
+          amount: 5,
+          unit: "Tablespoons"
+        }, {
+          name: "Raising agent",
+          amount: 2,
+          unit: "Teaspoons"
+        }, {
+          name: "Sugar",
+          amount: 3,
+          unit: "Cups"
+        }, {
+          name: "Eggs",
+          amount: 3,
+          unit: ""
+        }, {
+          name: "Flour",
+          amount: 2.5,
+          unit: "Cups"
+        }, {
+          name: "Milk",
+          amount: 2,
+          unit: "Cups"
+        }]
+      }];
+
+      function calculate(multiplier, i) {
+        $("#ingredients").html('');
+        $("#recipe").html("<p><b>" + recipe[i].name + " (" + multiplier + "x)</b> would require the following ingredients: </p>");
+        for (j = 0; j < recipe[i].ingredients.length; j++) {
+          $("#ingredients").append("<p>" + recipe[i].ingredients[j].amount * multiplier + " " + recipe[i].ingredients[j].unit + " " + recipe[i].ingredients[j].name + "</p>");
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <div data-role="page" id="page1">
+      <div data-role="header">
+        <h1>Page 1</h1>
+      </div>
+      <div data-role="main" class="ui-content">
+        <p>This is page one.</p>
+        <div id="recipe"></div>
+        <div id="ingredients"></div> <a href="javascript: calculate(1,0)" data-role="button">Normal size choko cake</a>
+        <a href="javascript: calculate(2,0)" data-role="button">Double size choko cake</a>
+        <a href="#page2" data-role="button">Page two</a>
+      </div>
+    </div>
+    <div data-role="page" id="page2">
+      <div data-role="header">
+        <h1>Page 2</h1>
+      </div>
+      <div data-role="main" class="ui-content">
+        <p>This is page two</p> <a href="#page1" data-role="button">Page one</a>
+      </div>
+    </div>
+  </body>
+
+</html>
