@@ -169,16 +169,20 @@
         });
       }
       words = sortByKey(words, 'English');
+      
+      
       $("#list").live("pageinit", function(event) {
         $("#wordList").append('<li data-role="list-divider">Yoga postures  </li>');
         for (i = 0; i < words.length; i++) {
-          if (words[i].class == "posture") {
-            $("#wordList").append('<li><a data-role="button" href="javascript: showWord(' + i + ');"><img data-icon="true" src="' + words[i].image + '">' + words[i].English + '</a></li>');
-          }
+          
+            $("#wordList").append('<li><a data-role="button" href="javascript: showWord(' + i + ');"><img data-icon="true" src="' + words[i].image + '">' + words[i].English + "<br>" + words[i].Sanskrit + '</a></li>');
+          
         }
         // this makes sure the buttons are styled
         $("#wordList").listview("refresh");
       });
+      
+      
     </script>
   </head>
 
@@ -196,6 +200,9 @@
         <h1>Irene's Yoga App</h1>
       </div>
       <div data-role="content">
+       <a data-role="button" href="#Dictionary">
+          <h3>Postures</h3>
+        </a> 
         <a data-role="button" href="#About">
           <h3>About this App</h3>
         </a>
@@ -205,9 +212,7 @@
         <a data-role="button" href="#How">
           <h3>How to use the app</h3>
         </a>
-        <a data-role="button" href="#Dictionary">
-          <h3>Postures</h3>
-        </a> <a href="#" data-rel="back" data-role="button">Back to Start </a> 
+       <a href="#" data-rel="back" data-role="button">Back to Start </a> 
       </div>
     </div>
     <div data-role="page" id="About">
@@ -249,7 +254,7 @@
         <h1>IRENE'S YOGA APP</h1> <a href="#" data-rel="back" data-role="button">Back</a>
       </div>
       <div data-role="content">
-        <ul data-role="listview" id="wordList" data-filter="true"></ul>
+        <ul data-role="listview" id="wordList" data-filter="true"></ul><a href="#" data-rel="back" data-role="button">Back</a>
       </div>
       <div data-role="footer">
         <h1>&copy; I Beldon 2014</h1>
