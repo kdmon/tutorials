@@ -95,7 +95,7 @@ var main_state = {
         
         for (var i = 0; i < 8; i++)
             if (i != hole && i != hole +1) 
-                this.add_one_pipe(800, i*120+20);
+                this.add_one_pipe(800, i*120+10);
     
         this.score += 1;
         this.label_score.content = this.score;  
