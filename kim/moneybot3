@@ -19,6 +19,7 @@
       <div data-role="main" class="ui-content">
         <p>Insert fancypants graphics here</p> 
         <a href="#myAccs" data-role="button">My Accounts</a>
+        <a href="#weekView" data-role="button">Week View</a>
         <a href="#help" data-role="button">Help</a>
       </div>
       <div data-role="footer">
@@ -92,7 +93,22 @@
       <div data-role="footer">
        <h1>&copy;Kimberley Shepherd 2014</h1> 
       </div>
-   </div> 
+    </div>
+    
+    <div data-role="page" id="weekView"> 
+      <div data-role="header"> 
+        <h1>Week View</h1>
+      </div> 
+      <div data-role="main" class="ui-content"> 
+        <p>This page will display balance for each day of the week, highlighing in red any negative balances</p>
+        <a href="#myAccs" data-role="button">My Accounts</a>
+        <a href="#main" data-role="button">Main</a>
+      </div>
+      <div data-role="footer">
+       <h1>&copy;Kimberley Shepherd 2014</h1> 
+      </div>
+    </div>
+    
   </body>
 
 </html>
