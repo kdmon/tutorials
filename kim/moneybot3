@@ -7,25 +7,45 @@
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+
+  
+  <script>
+    var transactions = [
+    {
+      "date": "13/07/14",
+      "category": "Food",
+      "amount": "10.00",
+      "currency": "£",
+      "account": "mainAcc"
+    },
+
+    {
+      "date": "14/07/14",
+      "category": "Petrol",
+      "amount": "50.00",
+      "currency": "£",
+      "account": "mainAcc"
+    }
+    ];
+    
+    var accounts = [
+    {
+      "name": "Main Account",
+      
+    },
+
+    {
+      "name": "Billing Account",
+    },
+    
+    {
+      "name": "Wallet"
+    }
+    ];
+  
+    
+  </script>
   </head>
-  
-  var transactions = [
-  
-  {
-    "date": "13/07/14",
-    "category": "Food",
-    "amount": "10.00",
-    "currency": "£"
-  },
-
-  {
-    "date": "14/07/14",
-    "category": "Petrol",
-    "amount": "50.00",
-    "currency": "£"
-  }
-
-  ];
 
   <body>
 
@@ -35,29 +55,13 @@
         <h1>MoneyBot</h1>
       </div>
       <div data-role="main" class="ui-content">
-        <p>Insert fancypants graphics here</p> 
+        <img src="http://wiki.it4se.com/images/4/4a/Moneybot.jpg">
         <a href="#myAccs" data-role="button">My Accounts</a>
         <a href="#weekView" data-role="button">Week View</a>
         <a href="#help" data-role="button">Help</a>
       </div>
       <div data-role="footer">
         <h1>&copy;Kimberley Shepherd 2014</h1>
-      </div>
-    </div> 
-    
-    <div data-role="page" id="myAccs"> 
-      <div data-role="header"> 
-        <h1>My Accounts</h1>
-      </div> 
-      <div data-role="main" class="ui-content">
-        <p>This page will list the users accounts</p>
-        <a href="#mainAcc" data-role="button">Main Account</a>
-        <a href="#billAcc" data-role="button">Billing Account</a>
-        <a href="#wallet" data-role="button">Wallet</a>
-        <a href="#main" data-role="button">Main Page</a>
-      </div>
-      <div data-role="footer">
-       <h1>&copy;Kimberley Shepherd 2014</h1> 
       </div>
     </div> 
     
@@ -124,6 +128,23 @@
       </div>
       <div data-role="footer">
        <h1>&copy;Kimberley Shepherd 2014</h1> 
+      </div>
+    </div>
+    
+    <div data-role="page" id="myAccs">
+      <div data-role="header">
+        <h1>Accounts List</h1>
+      </div>
+      <div data-role="content">
+        <ul data-role="listview">
+          <li><a href="#mainAcc">Main Account</a></li>
+          <li><a href="#billAcc">Billing Account</a></li>
+          <li><a href="#wallet">Wallet</a></li>
+        </ul>
+        <a href="#main" data-role="button">Main Page</a>
+      </div>
+      <div data-role="footer">
+        <h1>&copy;Kimberley Shepherd 2014</h1>
       </div>
     </div>
     
