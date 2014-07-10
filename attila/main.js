@@ -4,7 +4,7 @@ function myFunction() {
 }
 
 // Initialize Phaser, and creates a 400x490px game
-var game = new Phaser.Game(400, 490, Phaser.AUTO, 'game_div');
+var game = new Phaser.Game(800, 960, Phaser.AUTO, 'game_div');
 
 // Creates a new 'main' state that will contain the game
 var main_state = {
@@ -15,10 +15,10 @@ var main_state = {
         this.game.stage.backgroundColor = '#FAF0E6';
 
         // Load the bird sprite
-        this.game.load.image('bird', 'assets/bird.png');  
+        this.game.load.image('bird', 'bird.png');  
 
         // Load the pipe sprite
-        this.game.load.image('pipe', 'assets/pipe.png');      
+        this.game.load.image('pipe', 'pipe.png');      
     },
 
     // Fuction called after 'preload' to setup the game 
@@ -32,9 +32,9 @@ var main_state = {
         // Call the 'jump' function when the spacekey is hit 
         // I changed it from: "this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);"
         var space_key = this.game.input.onDown.add(this.jump, this);
+        //space_key.onDown.add(this.jump, this);
 
-
-        space_key.onDown.add(this.jump, this);
+        //this.game.input.game.touchStart(alert('test'));
  
         // Create a group of 20 pipes
         this.pipes = game.add.group();
@@ -45,7 +45,7 @@ var main_state = {
 
         // Add a score label on the top left of the screen
         this.score = 0;
-        var style = { font: "30px Arial", fill: "#000000" };
+        var style = { font: "60px Arial", fill: "#000000" };
         this.label_score = this.game.add.text(20, 20, "0", style);  
     },
 
@@ -95,7 +95,7 @@ var main_state = {
         
         for (var i = 0; i < 8; i++)
             if (i != hole && i != hole +1) 
-                this.add_one_pipe(400, i*60+10);   
+                this.add_one_pipe(800, i*120+20);
     
         this.score += 1;
         this.label_score.content = this.score;  
