@@ -34,7 +34,7 @@
       }, {
         "date": "13/07/14",
         "category": "Food",
-        "amount": 0,
+        "amount": 10,
         "account": "wallet"
       }];
       var accounts = [{
@@ -62,21 +62,25 @@
             break;
           case "billing":
             for (i = 0; i < transactions.length; i++) {
-              if (transactions[i].income) balance += transactions[i].amount;
-              else balance -= transactions[i].amount;
+              if (transactions[i].account == "billing") {
+                if (transactions[i].income) balance += transactions[i].amount;
+                else balance -= transactions[i].amount;
+              }
             }
             return balance;
             break;
           case "wallet":
             for (i = 0; i < transactions.length; i++) {
-              if (transactions[i].income) balance += transactions[i].amount;
-              else balance -= transactions[i].amount;
+              if (transactions[i].account == "wallet") {
+                if (transactions[i].income) balance += transactions[i].amount;
+                else balance -= transactions[i].amount;
+              }
             }
             return balance;
             break;
         }
       }
-      alert('test' + " " + calculateBalance('main'));
+      alert('test' + " " + calculateBalance('wallet'));
     </script>
   </head>
 
