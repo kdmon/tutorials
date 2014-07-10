@@ -34,6 +34,33 @@
           name: "Milk",
           amount: 2,
           unit: "Cups"
+        }]},
+        {
+        name: "Victoria sponge cake",
+        ingredients: [{
+          name: "Cocoa",
+          amount: 5,
+          unit: "Tablespoons"
+        }, {
+          name: "Raising agent",
+          amount: 2,
+          unit: "Teaspoons"
+        }, {
+          name: "Sugar",
+          amount: 3,
+          unit: "Cups"
+        }, {
+          name: "Eggs",
+          amount: 3,
+          unit: ""
+        }, {
+          name: "Flour",
+          amount: 2.5,
+          unit: "Cups"
+        }, {
+          name: "Milk",
+          amount: 2,
+          unit: "Cups"
         }]
       }];
 
@@ -55,7 +82,8 @@
       <div data-role="main" class="ui-content">
         <p>This is page one.</p>
         <div id="recipe"></div>
-        <div id="ingredients"></div> <a href="javascript: calculate(1,0)" data-role="button">Normal size choko cake</a>
+        <div id="ingredients"></div>
+        <a href="javascript: calculate(1,1)" data-role="button">Normal size choko cake</a>
         <a href="javascript: calculate(2,0)" data-role="button">Double size choko cake</a>
         <a href="#page2" data-role="button">Page two</a>
       </div>
