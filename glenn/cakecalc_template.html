@@ -66,9 +66,13 @@
         }]
       }];
 
-      function recipeingredients (i) {
+      function recipename(i) {
+        $("#recipe").html("<p><b>" + recipe[i].size + recipe[i].unit + recipe[i].shape + recipe[i].name + "</b></p>")
+      }}
+
+      function recipeingredients(i) {
         $("#ingredients").html('');
-        $("#recipe").html("<p><b>" + " recipe[i].size " + " recipe[i].unit " + " recipe[i].shape " + " recipe[i].name " "</b></p>");
+        $("#recipe").html("<p><b>" "The" + recipe[i].size + recipe[i].unit + recipe[i].shape + " vesion of this cake requires: "</b></p>");
         for (j = 0; j < recipe[i].ingredients.length; j++) {
           $("#ingredients").append("<p>" + recipe[i].ingredients[j].amount + recipe[i].ingredients[j].unit + " " + recipe[i].ingredients[j].name + "</p>");
         }}
@@ -110,11 +114,10 @@
         <h1 id="recipename"></h1>
       </div>
       <div data-role="main" class="ui-content">
-        <h3>Ingredients.</h3>
+        <h3>Ingredients:</h3>
         <ul id="recipeingredients"></ul>
-        <h3>What Size Would You Like to Make the Cake?</h3>
-        insert slider coding
-        
+        <h4>What size would you like to make the cake? (centimetres)</h4>
+        <input type="range" min="10" max="30" value="20" step="1" />
         
         <a href="#page1" data-role="button">Home</a>
       </div>
