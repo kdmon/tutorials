@@ -62,7 +62,7 @@ var main_state = {
     // Make the bird jump 
     jump: function() {
         // Add a vertical velocity to the bird
-        this.bird.body.velocity.y = -345;
+        this.bird.body.velocity.y = -360;
     },
 
     // Restart the game
@@ -95,7 +95,7 @@ var main_state = {
         
         for (var i = 0; i < 8; i++)
             if (i != hole && i != hole +1) 
-                this.add_one_pipe(1000, i*120+20);
+                this.add_one_pipe(800, i*120+20);
     
         this.score += 1;
         this.label_score.content = this.score;  
