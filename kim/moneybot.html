@@ -12,25 +12,31 @@
       var transactions = [{
         "date": "13/07/14",
         "category": "Food",
-        "amount": 10.01,
+        "amount": 10,
         "account": "main"
       }, {
         "date": "14/07/14",
         "category": "Wages",
-        "amount": 50.00,
+        "amount": 50,
         "account": "main",
         "income": "true"
       }, {
         "date": "13/07/14",
         "category": "Food",
-        "amount": 10.00,
+        "amount": 10,
         "account": "billing"
       }, {
         "date": "13/07/14",
+        "category": "Wages",
+        "amount": 10,
+        "account": "wallet",
+        "income": true
+      }, {
+        "date": "13/07/14",
         "category": "Food",
-        "amount": 10.00,
+        "amount": 0,
         "account": "wallet"
-      }, ];
+      }];
       var accounts = [{
         "name": "Main Account",
         id: "main"
@@ -47,20 +53,30 @@
         switch (account) {
           case "main":
             for (i = 0; i < transactions.length; i++) {
+              if (transactions[i].account == "main") {
+                if (transactions[i].income) balance += transactions[i].amount;
+                else balance -= transactions[i].amount;
+              }
+            }
+            return balance;
+            break;
+          case "billing":
+            for (i = 0; i < transactions.length; i++) {
               if (transactions[i].income) balance += transactions[i].amount;
               else balance -= transactions[i].amount;
             }
             return balance;
             break;
-          case "billing":
-            return balance;
-            break;
           case "wallet":
+            for (i = 0; i < transactions.length; i++) {
+              if (transactions[i].income) balance += transactions[i].amount;
+              else balance -= transactions[i].amount;
+            }
             return balance;
             break;
         }
       }
-      console.log('test' + calculateBalance('main'));
+      alert('test' + " " + calculateBalance('main'));
     </script>
   </head>
 
