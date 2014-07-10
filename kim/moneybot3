@@ -26,6 +26,23 @@
       "currency": "£",
       "account": "mainAcc"
     }
+    
+    {
+      "date": "13/07/14",
+      "category": "Food",
+      "amount": "10.00",
+      "currency": "£",
+      "account": "billAcc"
+    },
+    
+    {
+      "date": "13/07/14",
+      "category": "Food",
+      "amount": "10.00",
+      "currency": "£",
+      "account": "wallet"
+    },
+    
     ];
     
     var accounts = [
