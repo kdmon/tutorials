@@ -8,7 +8,7 @@
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
     <script>
-      var currency = "£";
+      var currency = "GBP";
       var transactions = [{
         "date": "13/07/14",
         "category": "Food",
@@ -47,17 +47,17 @@
         switch (account) {
           case "main":
             for (i = 0; i < transactions.length; i++) {
-              if (transaction[i].income) balance += transaction[i].amount;
-              else balance -= transaction[i].amount;
+              if (transactions[i].income) balance += transactions[i].amount;
+              else balance -= transactions[i].amount;
             }
             return balance;
-            break:
+            break;
           case "billing":
             return balance;
-            break:
+            break;
           case "wallet":
             return balance;
-            break:
+            break;
         }
       }
       console.log('test' + calculateBalance('main'));
