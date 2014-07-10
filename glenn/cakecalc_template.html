@@ -66,7 +66,7 @@
         }]
       }];
 
-      function calculate(multiplier, i) {
+      function showrecipe(i) {
         $("#ingredients").html('');
         $("#recipe").html("<p><b>" + recipe[i].name + " (" + multiplier + "x)</b> would require the following ingredients: </p>");
         for (j = 0; j < recipe[i].ingredients.length; j++) {
@@ -95,6 +95,28 @@
         <a href="javascript: calculate(1,1)" data-role="button" data-icon="arrow-r" data-iconpos="right">Normal size choko cake</a>
         <a href="javascript: calculate(2,0)" data-role="button" data-icon="arrow-r" data-iconpos="right">Double size choko cake</a>
         <a href="#page2" data-role="button">Page two</a>
+      </div>
+    </div>
+    <div data-role="page" id="page2">
+      <div data-role="header">
+        <h1>Page 2</h1>
+      </div>
+      <div data-role="main" class="ui-content">
+        <p>This is page two</p> <a href="#page1" data-role="button">Page one</a>
+      </div>
+    </div>
+    <div data-role="page" id="recipedetails">
+      <div data-role="header">
+        <h1 id="recipename"></h1>
+      </div>
+      <div data-role="main" class="ui-content">
+        <h3>Ingredients.</h3>
+        <ul id="recipeingredients"></ul>
+        <h3>What Size Would You Like to Make the Cake?</h3>
+        insert slider coding
+        
+        
+        <a href="#page1" data-role="button">Home</a>
       </div>
     </div>
     <div data-role="page" id="page2">
