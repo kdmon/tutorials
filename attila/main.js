@@ -4,7 +4,7 @@ function myFunction() {
 }
 
 // Initialize Phaser, and creates a 400x490px game
-var game = new Phaser.Game(800, 960, Phaser.AUTO, 'game_div');
+var game = new Phaser.Game(800, 980, Phaser.AUTO, 'game_div');
 
 // Creates a new 'main' state that will contain the game
 var main_state = {
