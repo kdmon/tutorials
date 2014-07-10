@@ -66,11 +66,11 @@
         }]
       }];
 
-      function showrecipe(i) {
+      function recipeingredients (i) {
         $("#ingredients").html('');
-        $("#recipe").html("<p><b>" + recipe[i].name + " (" + multiplier + "x)</b> would require the following ingredients: </p>");
+        $("#recipe").html("<p><b>" + " recipe[i].size " + " recipe[i].unit " + " recipe[i].shape " + " recipe[i].name " "</b></p>");
         for (j = 0; j < recipe[i].ingredients.length; j++) {
-          $("#ingredients").append("<p>" + recipe[i].ingredients[j].amount * multiplier + " " + recipe[i].ingredients[j].unit + " " + recipe[i].ingredients[j].name + "</p>");
+          $("#ingredients").append("<p>" + recipe[i].ingredients[j].amount + recipe[i].ingredients[j].unit + " " + recipe[i].ingredients[j].name + "</p>");
         }}
       function calculate(multiplier, i) {
         $("#ingredients").html('');
