@@ -51,30 +51,43 @@
     </div > 
     
     <div data-role="page" id="billAcc"> 
-      <div data-role="header"> < h1 > Billing Account < /h1>
-     </div > < div data - role = "main"
-      class = "ui-content" > < p > This page will list the transactions
-      for the account
-      for that week < /p>
-<a href="#myAccs" data-role="button">My Accounts</a > < /div>
-     <div data-role="footer">
-       <h1>&copy;Kimberley Shepherd 2014</h1 > < /div>
-   </div > < div data - role = "main"
-      id = "wallet" > < div data - role = "header" > < h1 > Wallet < /h1>
-     </div > < div data - role = "main"
-      class = "ui-content" > < p > This page will list the transactions
-      for the account
-      for that week < /p>
-<a href="#myAccs" data-role="button">My Accounts</a > < /div>
-     <div data-role="footer">
-       <h1>&copy;Kimberley Shepherd 2014</h1 > < /div>
-   </div > < div data - role = "main"
-      id = "help" > < div data - role = "header" > < h1 > help < /h1>
-     </div > < div data - role = "main"
-      class = "ui-content" > < p > This page will explain the aims and use of the app < /p>
-<a href="#main" data-role="button">Main</a > < /div>
-     <div data-role="footer">
-       <h1>&copy;Kimberley Shepherd 2014</h1 > < /div>
-   </div > < /body>
+      <div data-role="header"> 
+        <h1>Billing Account</h1>
+      </div> 
+      <div data-role="main" class="ui-content"> 
+        <p>This page will list the transactions for the accounts for that week</p>
+        <a href="#myAccs" data-role="button">My Accounts</a > 
+      </div>
+      <div data-role="footer">
+       <h1>&copy;Kimberley Shepherd 2014</h1> 
+      </div>
+    </div> 
+   
+    <divdata-role="page" id="wallet">
+      <div data-role="header">
+        <h1>Wallet</h1>
+      </div> 
+      <div data-role="main" class="ui-content"> 
+        <p>This page will list the transactions for the account for that week </p>
+        <a href="#myAccs" data-role="button">My Accounts</a > < /div>
+      <div data-role="footer">
+        <h1>&copy;Kimberley Shepherd 2014</h1> 
+      </div>
+    </div> 
+    
+    <div data-role="main" id="help"> 
+      <div data-role="header"> 
+        <h1>help</h1>
+      </div> 
+      <div data-role="main" class="ui-content"> 
+        <p>This page will explain the aims and use of the app </p>
+        <a href="#main" data-role="button">Main</a> 
+      < /div>
+      <div data-role="footer">
+       <h1>&copy;Kimberley Shepherd 2014</h1> 
+      < /div>
+   </div> 
+   
+  < /body>
 
 </html >
