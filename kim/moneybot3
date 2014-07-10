@@ -8,6 +8,24 @@
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
   </head>
+  
+  var transactions = [
+  
+  {
+    "date": "13/07/14",
+    "category": "Food",
+    "amount": "10.00",
+    "currency": "£"
+  },
+
+  {
+    "date": "14/07/14",
+    "category": "Petrol",
+    "amount": "50.00",
+    "currency": "£"
+  }
+
+  ];
 
   <body>
 
