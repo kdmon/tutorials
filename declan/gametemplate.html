@@ -80,8 +80,8 @@
         );
         this.fixDef = new b2FixtureDef;
         this.fixDef.density = 1.0;
-        this.fixDef.friction = 0;
-        this.fixDef.restitution = 0;
+        this.fixDef.friction = 2;
+        this.fixDef.restitution = 0.1;
       }
       bTest.prototype.update = function() {
         var start = Date.now();
@@ -345,7 +345,7 @@
         //this.radius = (this.radius * TILESIZE) * CAMERA.fov;
         ctx.save();
         ctx.translate(this.x, this.y);
-        ctx.rotate(this.angle);
+        //ctx.rotate(this.angle);
         ctx.translate(-(this.x), -(this.y));
         switch (this.id) {
           case "player":
@@ -529,14 +529,14 @@
         }
         if (controls.left && !controls.right) {
           if (box.bodiesMap["player"].GetLinearVelocity().x > 0) box.bodiesMap["player"].SetLinearVelocity(new b2Vec2(0, box.bodiesMap["player"].GetLinearVelocity().y));
-          if (box.bodiesMap["player"].GetLinearVelocity().x > -5) box.applyForce("player", 180, strength);
+          if (box.bodiesMap["player"].GetLinearVelocity().x > -3) box.applyForce("player", 180, strength);
         }
         if (controls.right && !controls.left) {
           if (box.bodiesMap["player"].GetLinearVelocity().x < 0) box.bodiesMap["player"].SetLinearVelocity(new b2Vec2(0, box.bodiesMap["player"].GetLinearVelocity().y));
-          if (box.bodiesMap["player"].GetLinearVelocity().x < 5) box.applyForce("player", 0, strength);
+          if (box.bodiesMap["player"].GetLinearVelocity().x < 3) box.applyForce("player", 0, strength);
         }
         if (!controls.left && !controls.right) {
-          //box.bodiesMap["player"].SetLinearVelocity(new b2Vec2(0, box.bodiesMap["player"].GetLinearVelocity().y));
+          box.bodiesMap["player"].SetLinearVelocity(new b2Vec2(0, box.bodiesMap["player"].GetLinearVelocity().y));
         }
       }
 
