@@ -80,7 +80,64 @@
             break;
         }
       }
-      alert('test' + " " + calculateBalance('wallet'));
+
+      function listTransaction (id, account, income) {
+          
+          $("#mainTransactions").append('<tr>');
+            $("#mainTransactions").append('<th>DATE</th>');
+          $("#mainTransactions").append('<td>');
+            $("#mainTransactions").append(transactions[id].date + " ");
+          $("#mainTransactions").append('</td>');
+         
+          
+          $("#mainTransactions").append('<td>');
+          $("#mainTransactions").append('<th>CATEGORY</th>');
+            $("#mainTransactions").append(transactions[id].category + " ");
+          $("#mainTransactions").append('</td>');
+     
+          
+          $("#mainTransactions").append('<td>');
+          $("#mainTransactions").append('<th>AMOUNT</th>>');
+            $("#mainTransactions").append(transactions[id].amount + " ");
+          $("#mainTransactions").append('</td>');
+          
+          $("#mainTransactions").append('</tr>');
+        
+      }
+
+      function displayTransactions(account) {
+        switch (account) {
+          case "main":
+            for (i = 0; i < transactions.length; i++) {
+              if (transactions[i].account == "main") {
+               listTransaction(i, "main")
+              }
+            }
+        
+            break;
+          case "billing":
+            for (i = 0; i < transactions.length; i++) {
+              if (transactions[i].account == "billing") {
+                if (transactions[i].income) balance += transactions[i].amount;
+                else balance -= transactions[i].amount;
+              }
+            }
+            return balance;
+            break;
+          case "wallet":
+            for (i = 0; i < transactions.length; i++) {
+              if (transactions[i].account == "wallet") {
+                if (transactions[i].income) balance += transactions[i].amount;
+                else balance -= transactions[i].amount;
+              }
+            }
+            return balance;
+            break;
+        }
+      }
+      // alert('test' + " " + calculateBalance('wallet'));
+      
+      
     </script>
   </head>
 
@@ -103,6 +160,9 @@
         <h1>Main Account</h1>
       </div>
       <div data-role="main" class="ui-content">
+        <table id="mainTransactions">
+          
+        </table>
         <p>This page will list the transactions for the account for that week</p> <a href="#myAccs" data-role="button">My Accounts</a> 
       </div>
       <div data-role="footer">
@@ -172,6 +232,12 @@
         <h1>&copy;Kimberley Shepherd 2014</h1>
       </div>
     </div>
+    <script>
+    $( "#mainAcc" ).on ( "pageinit", function( event ) {
+        displayTransactions("main")
+        
+      })
+      </script>
   </body>
 
 </html>
