@@ -15,12 +15,11 @@
     <div data-role="page" id="main">
       <div data-role="header">
         <h1>MoneyBot</h1>
-          
-        </div>
+      </div>
       <div data-role="main" class="ui-content">
         <p>Insert fancypants graphics here</p> 
         <a href="#myAccs" data-role="button">My Accounts</a>
-        <a href="#help" data-role="button">Help</a> 
+        <a href="#help" data-role="button">Help</a>
       </div>
       <div data-role="footer">
         <h1>&copy;Kimberley Shepherd 2014</h1>
@@ -36,6 +35,7 @@
         <a href="#mainAcc" data-role="button">Main Account</a>
         <a href="#billAcc" data-role="button">Billing Account</a>
         <a href="#wallet" data-role="button">Wallet</a>
+        <a href="#main" data-role="button">Main Page</a>
       </div>
       <div data-role="footer">
        <h1>&copy;Kimberley Shepherd 2014</h1> 
