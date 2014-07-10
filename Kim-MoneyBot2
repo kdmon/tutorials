@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
+  < /head>
+
+  <body>
+   
+    <div data-role="page" id="main">
+      <div data-role="header">
+        <h1>MoneyBot</h1></div>
+      <div data-role="main" class="ui-content">
+        <p>Insert fancypants graphics here</p> 
+        <a href="#myAccs" data-role="button">My Accounts</a>
+        <a href="#help" data-role="button">Help</a> 
+      </div>
+      <div data-role="footer">
+        <h1>&copy;Kimberley Shepherd 2014</h1>
+      </div>
+    </div> 
+    
+    <div data-role="page" id="myAccs"> 
+      <div data-role="header"> 
+        <h1>My Accounts</h1>
+      </div> 
+      <div data-role="main" class="ui-content">
+        <p>This page will list the users accounts</p>
+        <a href="#mainAcc" data-role="button">Main Account</a>
+        <a href="#billAcc" data-role="button">Billing Account</a>
+        <a href="#wallet" data-role="button">Wallet</a>
+      </div>
+      <div data-role="footer">
+       <h1>&copy;Kimberley Shepherd 2014</h1> 
+      </div>
+    </div> 
+    
+    <div data-role="page" id="mainAcc">
+      <div data-role="header"> 
+        <h1>Main Account</h1>
+      </div > 
+      <div data-role="main" class="ui-content">
+        <p>This page will list the transactions for the account for that week</p>
+        <a href="#myAccs" data-role="button">My Accounts</a > 
+      </div>
+      <div data-role="footer">
+       <h1>&copy;Kimberley Shepherd 2014</h1 > 
+      </div>
+    </div > 
+    
+    <div data-role="page" id="billAcc"> 
+      <div data-role="header"> < h1 > Billing Account < /h1>
+     </div > < div data - role = "main"
+      class = "ui-content" > < p > This page will list the transactions
+      for the account
+      for that week < /p>
+<a href="#myAccs" data-role="button">My Accounts</a > < /div>
+     <div data-role="footer">
+       <h1>&copy;Kimberley Shepherd 2014</h1 > < /div>
+   </div > < div data - role = "main"
+      id = "wallet" > < div data - role = "header" > < h1 > Wallet < /h1>
+     </div > < div data - role = "main"
+      class = "ui-content" > < p > This page will list the transactions
+      for the account
+      for that week < /p>
+<a href="#myAccs" data-role="button">My Accounts</a > < /div>
+     <div data-role="footer">
+       <h1>&copy;Kimberley Shepherd 2014</h1 > < /div>
+   </div > < div data - role = "main"
+      id = "help" > < div data - role = "header" > < h1 > help < /h1>
+     </div > < div data - role = "main"
+      class = "ui-content" > < p > This page will explain the aims and use of the app < /p>
+<a href="#main" data-role="button">Main</a > < /div>
+     <div data-role="footer">
+       <h1>&copy;Kimberley Shepherd 2014</h1 > < /div>
+   </div > < /body>
+
+</html >
