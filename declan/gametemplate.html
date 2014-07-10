@@ -8,7 +8,6 @@
     <script src="jquery-1.8.2.min.js"></script>
     <script src="stats.min.js"></script>
     <script src="declanlevel.js"></script>
-    
     <style>
       body {
         -webkit-transform: translateZ(0);
@@ -29,7 +28,6 @@
       }
       /* To remove the scrollbars */
     </style>
-    
     <script>
       // TEMPLATE FOR A PHYSICS BASED APP GAME
        //1 metre of box2d equals x pixels on canvas
@@ -52,14 +50,12 @@
           y: 0
         }
       };
-      
        // Method to remove index from array
       Array.prototype.unset = function(value) {
         if (this.indexOf(value) != -1) { // Make sure the value exists
           this.splice(this.indexOf(value), 1);
         }
       }
-      
        // World objects
       var b2Vec2 = Box2D.Common.Math.b2Vec2,
         b2BodyDef = Box2D.Dynamics.b2BodyDef,
@@ -84,8 +80,8 @@
         );
         this.fixDef = new b2FixtureDef;
         this.fixDef.density = 1.0;
-        this.fixDef.friction = 10;
-        this.fixDef.restitution = 0.4;
+        this.fixDef.friction = 0;
+        this.fixDef.restitution = 0;
       }
       bTest.prototype.update = function() {
         var start = Date.now();
@@ -155,11 +151,9 @@
       bTest.prototype.setBody = function(entity) {
         var bodyDef = new b2BodyDef;
         if (entity.rolling) {
-          
           bodyDef.angularDamping = 50;
         }
         if (entity.type == 'fixture') {
-          
           bodyDef.type = b2Body.b2_staticBody;
         } else {
           bodyDef.type = b2Body.b2_dynamicBody;
@@ -238,9 +232,11 @@
         var body = this.bodiesMap[bodyId];
         body.ApplyImpulse(new b2Vec2(Math.cos(degrees * (Math.PI / 180)) * power / scale, Math.sin(degrees * (Math.PI / 180)) * power / scale), body.GetWorldCenter());
       }
+      bTest.prototype.applyForce = function(bodyId, degrees, power) {
+        var body = this.bodiesMap[bodyId];
+        body.ApplyForce(new b2Vec2(Math.cos(degrees * (Math.PI / 180)) * power / scale, Math.sin(degrees * (Math.PI / 180)) * power / scale), body.GetWorldCenter());
+      }
     </script>
-    
-    
     <script>
       // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
       window.requestAnimFrame = (function() {
@@ -275,16 +271,12 @@
       Entity.prototype.hit = function(impulse, source) {
         if (!impulse || !source) return;
         this.isHit = true;
-        if (this.id == "player" && source.id == "player") {}
-        else if (this.id == "player" && source.type == "hazard") {
-          
+        if (this.id == "player" && source.id == "player") {} else if (this.id == "player" && source.type == "hazard") {
           // bug: todo: fix: can trigger during simulation step, thus crash. 
           // Add to event list to be executed on next frame.
           init(); //box.setPosition("player", new b2Vec2(0,0));
         }
-        
       }
-      
       Entity.prototype.cull = function() {
         var viewBounds = {
           x: box.bodiesMap["player"].GetPosition().x - canvasWidth / scale / scene.zoom / 2,
@@ -297,40 +289,33 @@
       }
       Entity.prototype.draw = function(ctx) {
         // show center of gravity for all objects
-        
         if (debugDraw) {
-      ctx.fillStyle = 'black';
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, 4/scale, 0, Math.PI * 2, true);
-      ctx.closePath();
-      ctx.fill();
-      
-      ctx.fillStyle = 'yellow';
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, 2/scale, 0, Math.PI * 2, true);
-      ctx.closePath();
-      ctx.fill();
-      
-      ctx.globalAlpha = 1;
-      ctx.fillStyle = "yellow";
-      ctx.font="1px Arial";
-      ctx.fillText(this.id,this.x,this.y);
-
-      if (this.isHit) {
-        
-      ctx.fillStyle = 'black';
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, 4/scale, 0, Math.PI * 2, true);
-      ctx.closePath();
-      ctx.fill();
-      
-      ctx.fillStyle = 'yellow';
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, 2/scale, 0, Math.PI * 2, true);
-      ctx.closePath();
-      ctx.fill();
-        }
-          
+          ctx.fillStyle = 'black';
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, 4 / scale, 0, Math.PI * 2, true);
+          ctx.closePath();
+          ctx.fill();
+          ctx.fillStyle = 'yellow';
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, 2 / scale, 0, Math.PI * 2, true);
+          ctx.closePath();
+          ctx.fill();
+          ctx.globalAlpha = 1;
+          ctx.fillStyle = "yellow";
+          ctx.font = "1px Arial";
+          ctx.fillText(this.id, this.x, this.y);
+          if (this.isHit) {
+            ctx.fillStyle = 'black';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, 4 / scale, 0, Math.PI * 2, true);
+            ctx.closePath();
+            ctx.fill();
+            ctx.fillStyle = 'yellow';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, 2 / scale, 0, Math.PI * 2, true);
+            ctx.closePath();
+            ctx.fill();
+          }
         }
       }
       Entity.build = function(def) {
@@ -367,7 +352,7 @@
             ctx.drawImage(playerSprite, acount * 94, 0, 94, 50, this.x - this.radius, this.y - this.radius, this.radius * 2, this.radius * 2);
             break;
           default:
-          break;
+            break;
         }
         ctx.restore();
         Entity.prototype.draw.call(this, ctx);
@@ -389,7 +374,6 @@
         ctx.translate(this.x, this.y);
         ctx.rotate(this.angle);
         ctx.translate(-(this.x), -(this.y));
-        
         ctx.restore();
         Entity.prototype.draw.call(this, ctx);
       }
@@ -421,11 +405,6 @@
         ctx.restore();
         Entity.prototype.draw.call(this, ctx);
       }
-      
-      
-      
-      
-      
       var canvas = document.getElementById("c0");
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -452,21 +431,18 @@
       var world = {};
       var bodiesState = null;
       var box = null;
+      var controls = {};
       var running = true;
       var start = false;
       var restart = false;
-      
        // textures
-
       var playerSprite = new Image;
       playerSprite.src = "playersprite.png";
-      
        // animation counters
       var acount = 0;
       var framecount = 0;
 
       function init() {
-
         scene.reachedTarget = true;
         world = {};
         // 1. Add static bodies
@@ -542,23 +518,26 @@
         canvas.addEventListener('mouseup', function(event) {}, false);
       }
 
-      function movePlayer(x, y) {
-
-        var xcomp = box.bodiesMap["player"].GetPosition().x;
-        var ycomp = box.bodiesMap["player"].GetPosition().y;
-        scene.targetx = (x / scale / scene.zoom) - scene.camerax + xcomp;
-        scene.targety = (y / scale / scene.zoom) - scene.cameray + ycomp;
-        world["cursor"] = Entity.build({
-          id: "cursor",
-          x: scene.targetx,
-          y: scene.targety,
-          radius: 0.5,
-          texture: 'cross',
-          type: "rolling",
-          alpha: 1,
-          mass: 2
-        });
-        scene.reachedTarget = false;
+      function movePlayer() {
+        var jumpStrength = 150;
+        var strength = 2000;
+        var angle = 180;
+        if (controls.up) {
+          if (box.bodiesMap["player"].GetLinearVelocity().y == 0) {
+            box.applyImpulse("player", -90, jumpStrength);
+          }
+        }
+        if (controls.left && !controls.right) {
+          if (box.bodiesMap["player"].GetLinearVelocity().x > 0) box.bodiesMap["player"].SetLinearVelocity(new b2Vec2(0, box.bodiesMap["player"].GetLinearVelocity().y));
+          if (box.bodiesMap["player"].GetLinearVelocity().x > -5) box.applyForce("player", 180, strength);
+        }
+        if (controls.right && !controls.left) {
+          if (box.bodiesMap["player"].GetLinearVelocity().x < 0) box.bodiesMap["player"].SetLinearVelocity(new b2Vec2(0, box.bodiesMap["player"].GetLinearVelocity().y));
+          if (box.bodiesMap["player"].GetLinearVelocity().x < 5) box.applyForce("player", 0, strength);
+        }
+        if (!controls.left && !controls.right) {
+          //box.bodiesMap["player"].SetLinearVelocity(new b2Vec2(0, box.bodiesMap["player"].GetLinearVelocity().y));
+        }
       }
 
       function updateTarget(x, y) {
@@ -584,23 +563,50 @@
       document.addEventListener('touchmove', function(event) {
         event.preventDefault();
       }, false);
+      document.onkeyup = function(key) {
+        key = key || window.event;
+        // move down
+        if (key.keyCode == '40') {
+          controls.down = false;
+          //scene.cameray --;
+        }
+        // move up
+        else if (key.keyCode == '38') {
+          controls.up = false;
+          //scene.cameray ++;
+        }
+        // move left
+        else if (key.keyCode == '37') {
+          controls.left = false;
+          //scene.camerax ++;
+        }
+        // move right
+        else if (key.keyCode == '39') {
+          controls.right = false;
+          //scene.camerax --;
+        }
+      }
       document.onkeydown = function(key) {
         key = key || window.event;
         // move down
         if (key.keyCode == '40') {
-          scene.cameray--;
+          controls.down = true;
+          //scene.cameray --;
         }
         // move up
         else if (key.keyCode == '38') {
-          scene.cameray++;
+          controls.up = true;
+          //scene.cameray ++;
         }
         // move left
         else if (key.keyCode == '37') {
-          scene.camerax++;
+          controls.left = true;
+          //scene.camerax ++;
         }
         // move right
         else if (key.keyCode == '39') {
-          scene.camerax--;
+          controls.right = true;
+          //scene.camerax --;
         }
         // page up
         else if (key.keyCode == '33') {
@@ -615,7 +621,6 @@
           scene.cameray = (canvasHeight / scale / scene.zoom) / 2;
         }
       }
-      
 
       function step() {
         box.update();
@@ -625,7 +630,6 @@
           if (world[id]) world[id].update(bodiesState[id]);
         }
       }
-
 
       function cullObjects() {
         bodiesState = box.getState();
@@ -682,7 +686,6 @@
             acount = 0;
           }
         }
-        
       }
 
       function draw() {
@@ -915,10 +918,10 @@
             }
             framecount++;
             cullObjects();
-            
             draw();
             step();
             //if (Math.random () > 0.95) 
+            movePlayer();
             moveObjects();
             requestAnimFrame(loop);
             stats.end();
@@ -935,15 +938,13 @@
           this.tileset.onload = $.proxy(this.renderLayers, this);
         },
         load: function(name) {
-          
-          this.loadTileset (levelmap);
+          this.loadTileset(levelmap);
           /*
           return $.ajax({
           url: name + ".json",
           type: "JSON"
         }).done($.proxy(this.loadTileset, this));
         */
-        
         }
       };
       scene.load("level1");
