@@ -276,8 +276,8 @@
         if (!impulse || !source) return;
         this.isHit = true;
         if (this.id == "player" && source.id == "player") {}
-        else if (this.id == "player" && source.type == "hazard") {
-          
+        else if (this.id == "player" && source.id == "goal") {
+          alert ("Well done you won!");
           // bug: todo: fix: can trigger during simulation step, thus crash. 
           // Add to event list to be executed on next frame.
           init(); //box.setPosition("player", new b2Vec2(0,0));
@@ -913,6 +913,7 @@
               init();
               restart = false;
             }
+            requestAnimFrame(loop);
             framecount++;
             cullObjects();
             
@@ -920,7 +921,6 @@
             step();
             //if (Math.random () > 0.95) 
             moveObjects();
-            requestAnimFrame(loop);
             stats.end();
             //setTimeout(function () {loop();}, 1000/60);
           })()
