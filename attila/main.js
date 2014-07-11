@@ -12,7 +12,7 @@ var main_state = {
     // Function called first to load all the assets
     preload: function() { 
         // Change the background color of the game
-    this.game.stage.backgroundColor = 'background.png';
+    this.game.stage.load.backgroundImage = 'background.png';
 
         // Load the bird sprite
         this.game.load.image('bird', 'bird.png');  
