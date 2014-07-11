@@ -23,10 +23,12 @@ var main_state = {
 
     // Fuction called after 'preload' to setup the game 
     create: function() { 
+        
+        // Set the background image
+        this.background = this.game.add.sprite(0, 0, 'background');
+        
         // Display the bird on the screen
         this.bird = this.game.add.sprite(100, 245, 'bird');
-        
-        this.background = this.game.add.sprite(0, 0, 'background');
         
         // Add gravity to the bird to make it fall
         this.bird.body.gravity.y = 1000; 
