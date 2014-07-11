@@ -83,9 +83,12 @@
 
       function listTransaction(id, account, income) {
      
-        $("#mainTransactions").append("<li>" + transactions[id].date + " " + transactions[id].category + " " + transactions[id].amount + "</li>" );
+        $("#mainTransactions").append("<li>" + transactions[id].date + " " + transactions[id].category + " " + currency + " " + transactions[id].amount + "</li>" );
         $("#mainTransactions").listview("refresh");
-        
+        $("#billTransactions").append("<li>" + transactions[id].date + " " + transactions[id].category + " " + currency + " " + transactions[id].amount + "</li>" );
+        $("#billTransactions").listview("refresh");
+        $("#walletTransactions").append("<li>" + transactions[id].date + " " + transactions[id].category + " " + currency + " " + transactions[id].amount + "</li>" );
+        $("#walletTransactions").listview("refresh");
       }
       function displayTransactions(account) {
         switch (account) {
@@ -98,21 +101,19 @@
             break;
           case "billing":
             for (i = 0; i < transactions.length; i++) {
-              if (transactions[i].account == "billing") {
-                if (transactions[i].income) balance += transactions[i].amount;
-                else balance -= transactions[i].amount;
+              if (transactions[i].account == "main") {
+                listTransaction(i, "main")
               }
             }
-            return balance;
+           
             break;
           case "wallet":
             for (i = 0; i < transactions.length; i++) {
-              if (transactions[i].account == "wallet") {
-                if (transactions[i].income) balance += transactions[i].amount;
-                else balance -= transactions[i].amount;
+              if (transactions[i].account == "main") {
+                listTransaction(i, "main")
               }
             }
-            return balance;
+          
             break;
         }
       }
@@ -153,7 +154,10 @@
         <h1>Billing Account</h1>
       </div>
       <div data-role="main" class="ui-content">
-        <p>This page will list the transactions for the accounts for that week</p> <a href="#myAccs" data-role="button">My Accounts</a> 
+        <ul data-role="listview" id="billTransactions"></ul> 
+        <br>
+        <p id="billClosingBal"></p>
+        <a href="#myAccs" data-role="button">My Accounts</a> 
       </div>
       <div data-role="footer">
         <h1>&copy;Kimberley Shepherd 2014</h1>
@@ -164,7 +168,10 @@
         <h1>Wallet</h1>
       </div>
       <div data-role="main" class="ui-content">
-        <p>This page will list the transactions for the account for that week</p> <a href="#myAccs" data-role="button">My Accounts</a> 
+       <ul data-role="listview" id="walletTransactions"></ul> 
+        <br>
+        <p id="walletClosingBal"></p>
+        <a href="#myAccs" data-role="button">My Accounts</a> 
       </div>
       <div data-role="footer">
         <h1>&copy;Kimberley Shepherd 2014</h1>
@@ -214,7 +221,17 @@
     <script>
       $("#mainAcc").on("pageinit", function(event) {
         displayTransactions("main")
-        $("#mainClosingBal").text("Closing Balance " + calculateBalance("main"))
+        $("#mainClosingBal").text("Closing Balance " + currency + " " + calculateBalance("main"))
+      })
+      
+      $("#billAcc").on("pageinit", function(event) {
+        displayTransactions("billing")
+        $("#billClosingBal").text("Closing Balance " + currency + " " + calculateBalance("billing"))
+      })
+      
+      $("#wallet").on("pageinit", function(event) {
+        displayTransactions("wallet")
+        $("#walletClosingBal").text("Closing Balance " + currency + " " + calculateBalance("wallet"))
       })
     </script>
   </body>
