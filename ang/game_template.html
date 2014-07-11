@@ -9,7 +9,7 @@
     <script src="stats.min.js"></script>
     <script src="anglevel.js"></script>
     
-    <style>
+    <style>z
       body {
         -webkit-transform: translateZ(0);
       }
@@ -364,7 +364,7 @@
         ctx.translate(-(this.x), -(this.y));
         switch (this.id) {
           case "player":
-            ctx.drawImage(playerSprite, acount * 32, 0, 55, 55, this.x - this.radius, this.y - this.radius, this.radius * 2, this.radius * 2);
+            ctx.drawImage(playerSprite, 0, 0, 55, 55, this.x - this.radius, this.y - this.radius, this.radius * 2, this.radius * 2);
             break;
           default:
           break;
@@ -717,9 +717,9 @@
         reachedTarget: true,
         targetx: 2,
         targety: 2,
-        zoom: 1,
-        camerax: Math.floor(canvasWidth / scale) / 2,
-        cameray: Math.floor(canvasHeight / scale) / 2,
+        zoom: 1.5,
+        camerax: Math.floor(canvasWidth / scale / 1.5) / 2,
+        cameray: Math.floor(canvasHeight / scale  / 1.5) / 2,
         layers: [],
         draw: function() {
           var l = 0;
