@@ -8,33 +8,33 @@
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
     <script>
-      var currency = "GBP";
+      var currency = "£";
       var transactions = [{
         "date": "13/07/14",
         "category": "Food",
-        "amount": 10,
+        "amount": 10.00,
         "account": "main"
       }, {
         "date": "14/07/14",
         "category": "Wages",
-        "amount": 50,
+        "amount": 50.50,
         "account": "main",
         "income": true
       }, {
         "date": "13/07/14",
         "category": "Council Tax",
-        "amount": 10,
+        "amount": 10.00,
         "account": "billing"
       }, {
         "date": "13/07/14",
         "category": "Wages",
-        "amount": 10,
+        "amount": 10.00,
         "account": "wallet",
         "income": true
       }, {
         "date": "13/07/14",
         "category": "Food",
-        "amount": 10,
+        "amount": 10.00,
         "account": "wallet"
       }];
       var accounts = [{
@@ -83,21 +83,21 @@
 
       function listTransactionMain(id, account, income) {
      
-        $("#mainTransactions").append("<li>" + transactions[id].date + " " + transactions[id].category + " " + currency + " " + transactions[id].amount + "</li>" );
+        $("#mainTransactions").append("<li>" + transactions[id].date + " " + transactions[id].category + " " + currency + transactions[id].amount + "</li>" );
         $("#mainTransactions").listview("refresh");
       
       }
       
       function listTransactionBilling(id, account, income) {
      
-        $("#billTransactions").append("<li>" + transactions[id].date + " " + transactions[id].category + " " + currency + " " + transactions[id].amount + "</li>" );
+        $("#billTransactions").append("<li>" + transactions[id].date + " " + transactions[id].category + " " + currency + transactions[id].amount + "</li>" );
         $("#billTransactions").listview("refresh");
        
       }
       
       function listTransactionWallet(id, account, income) {
      
-        $("#walletTransactions").append("<li>" + transactions[id].date + " " + transactions[id].category + " " + currency + " " + transactions[id].amount + "</li>" );
+        $("#walletTransactions").append("<li>" + transactions[id].date + " " + transactions[id].category + " " + currency + transactions[id].amount + "</li>" );
         $("#walletTransactions").listview("refresh");
        
       }
@@ -138,9 +138,10 @@
         <h1>MoneyBot</h1>
       </div>
       <div data-role="main" class="ui-content">
-        <img src="http://wiki.it4se.com/images/4/4a/Moneybot.jpg"> <a href="#myAccs" data-role="button">My Accounts</a>
+        <img src="http://wiki.it4se.com/images/4/4a/Moneybot.jpg"> 
+        <a href="#myAccs" data-role="button">My Accounts</a>
         <a href="#weekView" data-role="button">Week View</a>
-        <a href="#help" data-role="button">Help</a>
+        <a href="#help" data-role="button" data-theme="b" data-mini="true">Help</a>
       </div>
       <div data-role="footer">
         <h1>&copy;Kimberley Shepherd 2014</h1>
@@ -153,7 +154,7 @@
       <div data-role="main" class="ui-content">
         <ul data-role="listview" id="mainTransactions"></ul> 
         <br>
-        <p id="mainClosingBal"></p>
+        <b><p id="mainClosingBal"></p></b>
         <a href="#myAccs" data-role="button">My Accounts</a> 
       </div>
       <div data-role="footer">
@@ -167,7 +168,7 @@
       <div data-role="main" class="ui-content">
         <ul data-role="listview" id="billTransactions"></ul> 
         <br>
-        <p id="billClosingBal"></p>
+        <b><p id="billClosingBal"></p></b>
         <a href="#myAccs" data-role="button">My Accounts</a> 
       </div>
       <div data-role="footer">
@@ -181,7 +182,7 @@
       <div data-role="main" class="ui-content">
        <ul data-role="listview" id="walletTransactions"></ul> 
         <br>
-        <p id="walletClosingBal"></p>
+        <b><p id="walletClosingBal"></p></b>
         <a href="#myAccs" data-role="button">My Accounts</a> 
       </div>
       <div data-role="footer">
@@ -223,6 +224,7 @@
           </li>
           <li><a href="#wallet">Wallet</a>
           </li>
+        <br>
         </ul> <a href="#main" data-role="button">Main Page</a>
       </div>
       <div data-role="footer">
@@ -232,17 +234,17 @@
     <script>
       $("#mainAcc").on("pageinit", function(event) {
         displayTransactions("main")
-        $("#mainClosingBal").text("Closing Balance " + currency + " " + calculateBalance("main"))
+        $("#mainClosingBal").text("Closing Balance " + currency + calculateBalance("main"))
       })
       
       $("#billAcc").on("pageinit", function(event) {
         displayTransactions("billing")
-        $("#billClosingBal").text("Closing Balance " + currency + " " + calculateBalance("billing"))
+        $("#billClosingBal").text("Closing Balance " + currency + calculateBalance("billing"))
       })
       
       $("#wallet").on("pageinit", function(event) {
         displayTransactions("wallet")
-        $("#walletClosingBal").text("Closing Balance " + currency + " " + calculateBalance("wallet"))
+        $("#walletClosingBal").text("Closing Balance " + currency + calculateBalance("wallet"))
       })
     </script>
   </body>
