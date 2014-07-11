@@ -820,7 +820,60 @@ var levelmap = { "height":20,
                  "width":32,
                  "x":704,
                  "y":320
-                }],
+                },
+                {
+                 "height":544,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"fixture",
+                 "visible":true,
+                 "width":32,
+                 "x":64,
+                 "y":32
+                }, 
+                {
+                 "height":544,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"fixture",
+                 "visible":true,
+                 "width":32,
+                 "x":800,
+                 "y":32
+                }, 
+                {
+                 "height":32,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"fixture",
+                 "visible":true,
+                 "width":704,
+                 "x":96,
+                 "y":32
+                }, 
+                {
+                 "height":32,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"fixture",
+                 "visible":true,
+                 "width":704,
+                 "x":96,
+                 "y":544
+                }
+                ],
          "opacity":1,
          "type":"objectgroup",
          "visible":false,
