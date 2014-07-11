@@ -8,7 +8,9 @@
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
     <script>
+      //set currency to pounds
       var currency = "GBP";
+       //set details for each transaction
       var transactions = [{
         "date": "13/07/14",
         "category": "Food",
@@ -37,6 +39,7 @@
         "amount": 10,
         "account": "wallet"
       }];
+       //set up each account
       var accounts = [{
         "name": "Main Account",
         id: "main"
@@ -47,9 +50,11 @@
         "name": "Wallet",
         id: "wallet"
       }];
-
+      
+      var balance = 0;
+       //check each transaction and calculate those that are in the same account for account balance
       function calculateBalance(account) {
-        var balance = 0;
+        
         switch (account) {
           case "main":
             for (i = 0; i < transactions.length; i++) {
@@ -81,39 +86,18 @@
         }
       }
 
-      function listTransaction (id, account, income) {
-          
-          $("#mainTransactions").append('<tr>');
-            $("#mainTransactions").append('<th>DATE</th>');
-          $("#mainTransactions").append('<td>');
-            $("#mainTransactions").append(transactions[id].date + " ");
-          $("#mainTransactions").append('</td>');
-         
-          
-          $("#mainTransactions").append('<td>');
-          $("#mainTransactions").append('<th>CATEGORY</th>');
-            $("#mainTransactions").append(transactions[id].category + " ");
-          $("#mainTransactions").append('</td>');
-     
-          
-          $("#mainTransactions").append('<td>');
-          $("#mainTransactions").append('<th>AMOUNT</th>>');
-            $("#mainTransactions").append(transactions[id].amount + " ");
-          $("#mainTransactions").append('</td>');
-          
-          $("#mainTransactions").append('</tr>');
-        
-      }
-
+      function listTransaction(id, account, income) {}
+       
+       
+       //check each transaction and display in the relevant account page
       function displayTransactions(account) {
         switch (account) {
           case "main":
             for (i = 0; i < transactions.length; i++) {
               if (transactions[i].account == "main") {
-               listTransaction(i, "main")
+                listTransaction(i, "main")
               }
             }
-        
             break;
           case "billing":
             for (i = 0; i < transactions.length; i++) {
@@ -135,10 +119,10 @@
             break;
         }
       }
-      // alert('test' + " " + calculateBalance('wallet'));
-      
-      
+           //alert('test' + " " + calculateBalance('main'));
+
     </script>
+    
   </head>
 
   <body>
@@ -160,10 +144,10 @@
         <h1>Main Account</h1>
       </div>
       <div data-role="main" class="ui-content">
-        <table id="mainTransactions">
-          
-        </table>
-        <p>This page will list the transactions for the account for that week</p> <a href="#myAccs" data-role="button">My Accounts</a> 
+        <p>This page will list the transactions for the account for that week</p> 
+        <p>Closing Balance:</p>
+        document.write(balance);
+        <a href="#myAccs" data-role="button">My Accounts</a> 
       </div>
       <div data-role="footer">
         <h1>&copy;Kimberley Shepherd 2014</h1>
@@ -185,7 +169,8 @@
         <h1>Wallet</h1>
       </div>
       <div data-role="main" class="ui-content">
-        <p>This page will list the transactions for the account for that week</p> <a href="#myAccs" data-role="button">My Accounts</a> 
+        <p>This page will list the transactions for the account for that week</p> 
+        <a href="#myAccs" data-role="button">My Accounts</a> 
       </div>
       <div data-role="footer">
         <h1>&copy;Kimberley Shepherd 2014</h1>
@@ -233,11 +218,14 @@
       </div>
     </div>
     <script>
-    $( "#mainAcc" ).on ( "pageinit", function( event ) {
-        displayTransactions("main")
-        
+      $("#mainAcc").on("pageinit", function(event) {
+        displayTransactions("main"), calculateBalance('main')
       })
-      </script>
+       
+      
+    </script>
+  
+    
   </body>
 
 </html>
