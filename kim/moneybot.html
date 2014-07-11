@@ -8,7 +8,7 @@
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
     <script>
-      var currency = "£";
+      var currency = "&#163;";
       var transactions = [{
         "date": "13/07/14",
         "category": "Food",
@@ -234,17 +234,17 @@
     <script>
       $("#mainAcc").on("pageinit", function(event) {
         displayTransactions("main")
-        $("#mainClosingBal").text("Closing Balance " + currency + calculateBalance("main"))
+        $("#mainClosingBal").text("Closing Balance " + "£" + calculateBalance("main"))
       })
       
       $("#billAcc").on("pageinit", function(event) {
         displayTransactions("billing")
-        $("#billClosingBal").text("Closing Balance " + currency + calculateBalance("billing"))
+        $("#billClosingBal").text("Closing Balance " + "£" + calculateBalance("billing"))
       })
       
       $("#wallet").on("pageinit", function(event) {
         displayTransactions("wallet")
-        $("#walletClosingBal").text("Closing Balance " + currency + calculateBalance("wallet"))
+        $("#walletClosingBal").text("Closing Balance " + "£" + calculateBalance("wallet"))
       })
     </script>
   </body>
