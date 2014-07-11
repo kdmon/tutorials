@@ -872,11 +872,10 @@ var levelmap = { "height":20,
                  "width":704,
                  "x":96,
                  "y":544
-                }
-                ],
+                }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "width":30,
          "x":0,
          "y":0
