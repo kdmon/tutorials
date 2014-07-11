@@ -12,8 +12,8 @@ var main_state = {
     // Function called first to load all the assets
     preload: function() { 
         // Change the background color of the game
-        this.game.load.backgroundImage('background', 'background.png');
-
+        this.game.stage.load.backgroundImage('background', 'background.png');
+        
         // Load the bird sprite
         this.game.load.image('bird', 'bird.png');  
 
@@ -25,6 +25,9 @@ var main_state = {
     create: function() { 
         // Display the bird on the screen
         this.bird = this.game.add.sprite(100, 245, 'bird');
+        
+        // Display background 
+        this.bg= this.game.add.background(0, 0, game.stage.bounds.width, game.cache.getImage('background').height, 'background');
         
         // Add gravity to the bird to make it fall
         this.bird.body.gravity.y = 1000; 
