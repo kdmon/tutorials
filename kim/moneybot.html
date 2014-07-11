@@ -140,6 +140,7 @@
       <div data-role="main" class="ui-content">
         <img src="http://wiki.it4se.com/images/4/4a/Moneybot.jpg"> 
         <a href="#myAccs" data-role="button">My Accounts</a>
+        <a href="#newTrans" data-role="button">New Transactions</a>
         <a href="#weekView" data-role="button">Week View</a>
         <a href="#help" data-role="button" data-theme="b" data-mini="true">Help</a>
       </div>
@@ -225,6 +226,27 @@
           <li><a href="#wallet">Wallet</a>
           </li>
         <br>
+        </ul> <a href="#main" data-role="button">Main Page</a>
+      </div>
+      <div data-role="footer">
+        <h1>&copy;Kimberley Shepherd 2014</h1>
+      </div>
+    </div>
+     <div data-role="page" id="newTrans">
+      <div data-role="header">
+        <h1>New Transactions</h1>
+      </div>
+      <div data-role="content">
+        <form method="post" action="demoform.asp">
+          <div class="ui-field-contain">
+          <label for="date">Date:</label>
+          <input type="text" data-role="date" name="date" id="date" placeholder="dd/mm/yy">
+          <label for="category">Category:</label>
+          <input type="text" name="category" id="category">
+          <label for="amount">Amount:</label>
+          <input type="email" name="email" id="email" placeholder="Enter amount..">
+        </div>
+        </form>
         </ul> <a href="#main" data-role="button">Main Page</a>
       </div>
       <div data-role="footer">
