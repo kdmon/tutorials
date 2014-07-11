@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+
+  <head>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <style>
+      body {
+        background: #FFFF66;
+        font-size: 1em;
+        font-family: arial;
+        line-height: 1em;
+        padding: 20px;
+        margin: 20px;
+        color: orange;
+      }
+      .odd {
+        background: blue;
+        color: white;
+      }
+      .even {
+        background: red;
+        color: black;
+      }
+      #calender {
+        border: #000000 5px solid;
+      }
+      tr td {
+        border: blue 2px dotted;
+      }
+      th {
+        border: #000000 5px solid;
+      }
+      #maintitle {
+        padding: 1em;
+        margin: 1em;
+        border: 1px blue solid
+      }
+      ;
+    </style>
+    <script>
+      function changeText() {
+        // Step 1: read textbox
+        var newtext = $("#textbox").val();
+        // Step 2: update heading
+        $("#maintitle").text(newtext);
+        // Step 3: clear text box
+        $("#textbox").val("");
+      };
+    </script>
+  </head>
+
+  <body>
+    <h1 id="maintitle">What in God's Name is Going On??</h1>
+    <input type="text" id="textbox">
+    <button onclick="changeText()">Swap text</button>
+    <ol class="nuts">
+      <li class="odd">pecans</li>
+      <li class="even">walnuts</li>
+      <li class="odd">hazelnuts</li>
+      <li class="even">pistachios</li>
+    </ol>
+    <ul class="numbers">
+      <li class="odd">first</li>
+      <li class="even">second</li>
+      <li class="odd">third</li>
+      <li class="even">fourth</li>
+    </ul>
+    <table id="calender">
+      <th>Name</th>
+      <th>Day</th>
+      <tr>
+        <td>Jane</td>
+        <td>Tuesday</td>
+      </tr>
+      <tr>
+        <td>peter</td>
+        <td>Saturday</td>
+      </tr>
+    </table>
+  </body>
+
+</html>
