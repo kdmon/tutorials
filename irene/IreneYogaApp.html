@@ -170,20 +170,14 @@
         });
       }
       words = sortByKey(words, 'english');
-      
-      
       $("#list").live("pageinit", function(event) {
         $("#wordList").append('<li data-role="list-divider">Yoga postures  </li>');
         for (i = 0; i < words.length; i++) {
-          
-            $("#wordList").append('<li><a data-role="button" href="javascript: showWord(' + i + ');"><img data-icon="true" src="' + words[i].image + '">' + words[i].english + "<br>" + words[i].sanskrit + '</a></li>');
-          
+          $("#wordList").append('<li><a data-role="button" href="javascript: showWord(' + i + ');"><img data-icon="true" src="' + words[i].image + '">' + words[i].english + "<br>" + words[i].sanskrit + '</a></li>');
         }
         // this makes sure the buttons are styled
         $("#wordList").listview("refresh");
       });
-      
-      
     </script>
   </head>
 
@@ -201,9 +195,12 @@
         <h1>Irene's Yoga App</h1>
       </div>
       <div data-role="content">
-       <a data-role="button" href="#Dictionary">
+        <a data-role="button" href="#Dictionary">
           <h3>Postures</h3>
-        </a> 
+        </a>
+        <a data-role="button" href="#Relaxation">
+          <h3>Guided Relaxation</h3>
+        </a>
         <a data-role="button" href="#About">
           <h3>About this App</h3>
         </a>
@@ -212,8 +209,7 @@
         </a>
         <a data-role="button" href="#How">
           <h3>How to use the app</h3>
-        </a>
-       <a href="#" data-rel="back" data-role="button">Back to Start </a> 
+        </a> <a href="#" data-rel="back" data-role="button">Back to Start </a> 
       </div>
     </div>
     <div data-role="page" id="About">
@@ -221,6 +217,15 @@
         <h1>About the App</h1>
       </div>
       <div data-role="content">This App gives a list of yoga postures with the english and sanskrit names.Each posture has an image and the benefits that can be derived by regular practice. There is an audio button giving instructions on how to practice the posture.</div>
+      <div data-role="footer">
+        <h1>&copy; I Beldon 2014</h1>
+      </div>
+    </div>
+    <div data-role="page" id="Relaxation">
+      <div data-role="header"> <a href="#" data-rel="back" data-role="button">Back</a> 
+        <h1>Guided Relaxation</h1>
+      </div>
+      <div data-role="content"></div>
       <div data-role="footer">
         <h1>&copy; I Beldon 2014</h1>
       </div>
@@ -248,11 +253,9 @@
         <h1>Yoga Postures</h1>
       </div>
       <div data-role="content">
-      <p>Open the button Click on any posture to give you the French translation as well as the sanskrit name for the posture.</p>
-      
-      <h3>heading</h3>
-      <p>Also included are the benefits that practice of the posture will bring. Click on the Back button to return to the list.</p>
-      <a href="#list" data-role="button">Postures</a>
+        <p>Open the button Click on any posture to give you the French translation as well as the sanskrit name for the posture.</p>
+        <h3>heading</h3>
+        <p>Also included are the benefits that practice of the posture will bring. Click on the Back button to return to the list.</p> <a href="#list" data-role="button">Postures</a>
       </div>
     </div>
     <div data-role="page" id="list">
