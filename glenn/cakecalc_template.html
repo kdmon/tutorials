@@ -31,8 +31,8 @@
           name: "Butter",
           amount: 125,
           unit: "Grams"
-        }]},
-        {
+        }]
+      }, {
         name: "Simple Chocolate Cake",
         shape: "round",
         size: 20,
@@ -66,47 +66,45 @@
         }]
       }];
 
+      function addCake() {
+        var cakename = $("#cakename").val();
+        var cakeshape = $("#cakeshape").val();
+        var cakewidth = $("#cakewidth").val();
+        var cakelength = $("#cakelength").val();console.log(cakename)
+      };
+
       function recipename(i) {
-        $("#recipe").html("<p><b>" + recipe[i].size + recipe[i].unit + recipe[i].shape + recipe[i].name + "</b></p>")
-      }}
+        $("#recipe").html("<p><b>" + recipe[i].size + recipe[i].unit + recipe[i].shape + recipe[i].name + "</b></p>");
+      }
 
       function recipeingredients(i) {
         $("#ingredients").html('');
-        $("#recipe").html("<p><b>" "The" + recipe[i].size + recipe[i].unit + recipe[i].shape + " vesion of this cake requires: "</b></p>");
+        $("#recipe").html("<p><b> The " + recipe[i].size + recipe[i].unit + recipe[i].shape + " version of this cake requires: </b></p > ");
         for (j = 0; j < recipe[i].ingredients.length; j++) {
-          $("#ingredients").append("<p>" + recipe[i].ingredients[j].amount + recipe[i].ingredients[j].unit + " " + recipe[i].ingredients[j].name + "</p>");
-        }}
+          $("#ingredients").append(" < p > " + recipe[i].ingredients[j].amount + recipe[i].ingredients[j].unit + recipe[i].ingredients[j].name + " < /p>");
+        }
+      }
+
       function calculate(multiplier, i) {
         $("#ingredients").html('');
-        $("#recipe").html("<p><b>" + recipe[i].name + " (" + multiplier + "x)</b> would require the following ingredients: </p>");
+        $("#recipe").html("<p><b>" + recipe[i].name + " (" + multiplier + "x)</b > would require the following ingredients: < /p>");
         for (j = 0; j < recipe[i].ingredients.length; j++) {
-          $("#ingredients").append("<p>" + recipe[i].ingredients[j].amount * multiplier + " " + recipe[i].ingredients[j].unit + " " + recipe[i].ingredients[j].name + "</p>");
+          $("#ingredients").append("<p>" + recipe[i].ingredients[j].amount * multiplier + " " + recipe[i].ingredients[j].unit + " " + recipe[i].ingredients[j].name + "</p > ");
         }
       }
     </script>
   </head>
 
   <body>
-    <div data-role="page" id="page1">
+    <div data-role="page" id="homepage">
       <div data-role="header">
         <h1>Recipes</h1>
       </div>
       <div data-role="main" class="ui-content">
-        <p>Stored Recipes.</p>
         <div id="recipe"></div>
-        <div id="ingredients"></div>
-        <a href="javascript: XXXXXXXXX(X,X)" data-role="button" data-icon="plus" data-iconpos="right">Add Recipe</a>
-        <a href="#recipedetails" data-role="button" data-icon="arrow-r" data-iconpos="right">Normal size choko cake</a>
+        <div id="ingredients"></div> <a href="#addcake" data-role="button" data-icon="plus" data-iconpos="right">Add Recipe</a>
+        <p align="center">Saved Recipes.</p> <a href="#recipedetails" data-role="button" data-icon="arrow-r" data-iconpos="right">Normal size choko cake</a>
         <a href="javascript: calculate(2,0)" data-role="button" data-icon="arrow-r" data-iconpos="right">Double size choko cake</a>
-        <a href="#page2" data-role="button">Page two</a>
-      </div>
-    </div>
-    <div data-role="page" id="page2">
-      <div data-role="header">
-        <h1>Page 2</h1>
-      </div>
-      <div data-role="main" class="ui-content">
-        <p>This is page two</p> <a href="#page1" data-role="button">Page one</a>
       </div>
     </div>
     <div data-role="page" id="recipedetails">
@@ -117,9 +115,60 @@
         <h3>Ingredients:</h3>
         <ul id="recipeingredients"></ul>
         <h4>What size would you like to make the cake? (centimetres)</h4>
-        <input type="range" min="10" max="36" value="18" step="1" />
-        
-        <a href="#page1" data-role="button">Home</a>
+        <input type="range" min="10" max="36" value="18" step="1" /> <a href="#homepage" data-role="button">Home</a>
+      </div>
+    </div>
+    <div data-role="page" id="addcake">
+      <div data-role="header">
+        <h1>Add Cake</h1>
+      </div>
+      <div data-role="main" class="ui-content">
+        <p>What is the name of your cake?</p>
+        <input type="text" id="cakename">
+        <p>What shape is your cake?</p>
+        <select id="cakeshape">
+          <option>round</option>
+          <option>square</option>
+          <option>rectangle</option>
+        </select>
+        <!--dropdown choice limited to round, square or rectangular-->
+        <p>What size is your cake?</p>
+        <div class="ui-field-contain">
+          <fieldset data-role="controlgroup">
+            <legend>Width (cm):</legend>
+            <input type="text" id="cakewidth" />
+          </fieldset>
+          <fieldset data-role="controlgroup">
+            <legend>Length (cm):</legend>
+            <input type="text" id="cakelength" />
+          </fieldset>
+        </div>
+        <!--2 text boxes length & width identified as cm with X between them--> <a href="#" data-role="button" onclick="addCake()">Add Ingredients</a>
+      </div>
+    </div>
+    <div data-role="page" id="addingredients">
+      <div data-role="header">
+        <h1>Add Ingredients</h1>
+      </div>
+      <div data-role="main" class="ui-content">
+        <p>Add ingredients, quantities and units below:</p>
+        <div class="ui-field-contain">
+          <fieldset data-role="controlgroup">
+            <legend>Quantity:</legend>
+            <input type="text" id="quantity" />
+          </fieldset>
+          <fieldset data-role="controlgroup">
+            <legend>Unit:</legend>
+            <input type="text" id="unit" />
+          </fieldset>
+          <fieldset data-role="controlgroup">
+            <legend>Name:</legend>
+            <input type="text" id="ingredient" />
+          </fieldset>
+        </div>
+        <a href="#" data-role="button" onclick="addIngredient()">Add Ingredient</a>
+        <a href="#" data-role="button" >Cake Finished!</a>
+        <a href="#homepage" data-role="button">Home</a>
       </div>
     </div>
   </body>
