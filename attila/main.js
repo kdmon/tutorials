@@ -27,7 +27,7 @@ var main_state = {
         this.bird = this.game.add.sprite(100, 245, 'bird');
         
         // Display background 
-        this.bg= this.game.add.background(0, 0, game.stage.bounds.width, game.cache.getImage('background').height, 'background');
+        this.bg= this.game.add.background(800, 980, game.stage.bounds.width, game.cache.getImage('background').height, 'background');
         
         // Add gravity to the bird to make it fall
         this.bird.body.gravity.y = 1000; 
