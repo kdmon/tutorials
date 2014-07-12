@@ -91,125 +91,8 @@ var levelmap2 = { "height":20,
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":192,
-                 "y":96
-                }, 
-                {
-                 "height":32,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":128,
-                 "y":352
-                }, 
-                {
-                 "height":32,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":96,
-                 "y":480
-                }, 
-                {
-                 "height":32,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":32,
                  "x":160,
                  "y":608
-                }, 
-                {
-                 "height":32,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":320,
-                 "y":512
-                }, 
-                {
-                 "height":32,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":416,
-                 "y":512
-                }, 
-                {
-                 "height":32,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"fixture",
-                 "visible":true,
-                 "width":32,
-                 "x":512,
-                 "y":512
-                }, 
-                {
-                 "height":32,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"fixture",
-                 "visible":true,
-                 "width":32,
-                 "x":640,
-                 "y":512
-                }, 
-                {
-                 "height":32,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":736,
-                 "y":512
-                }, 
-                {
-                 "height":32,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"fixture",
-                 "visible":true,
-                 "width":32,
-                 "x":864,
-                 "y":480
                 }, 
                 {
                  "height":32,
@@ -231,180 +114,11 @@ var levelmap2 = { "height":20,
                     {
 
                     },
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":256,
-                 "y":448
-                }, 
-                {
-                 "height":96,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":256,
-                 "y":512
-                }, 
-                {
-                 "height":32,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":384,
-                 "y":416
-                }, 
-                {
-                 "height":32,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":640,
-                 "y":64
-                }, 
-                {
-                 "height":32,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":544,
-                 "y":96
-                }, 
-                {
-                 "height":32,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":768,
-                 "y":256
-                }, 
-                {
-                 "height":32,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":608,
-                 "y":160
-                }, 
-                {
-                 "height":32,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":832,
-                 "y":224
-                }, 
-                {
-                 "height":32,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":896,
-                 "y":416
-                }, 
-                {
-                 "height":32,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":544,
-                 "y":224
-                }, 
-                {
-                 "height":32,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":832,
-                 "y":608
-                }, 
-                {
-                 "height":32,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
                  "type":"fixture",
                  "visible":true,
                  "width":32,
                  "x":544,
                  "y":288
-                }, 
-                {
-                 "height":32,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":864,
-                 "y":384
-                }, 
-                {
-                 "height":32,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":416,
-                 "y":192
                 }, 
                 {
                  "height":256,
@@ -888,19 +602,6 @@ var levelmap2 = { "height":20,
                  "y":256
                 }, 
                 {
-                 "height":64,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":224,
-                 "y":288
-                }, 
-                {
                  "height":32,
                  "name":"",
                  "properties":
@@ -1016,19 +717,6 @@ var levelmap2 = { "height":20,
                  "width":32,
                  "x":480,
                  "y":288
-                }, 
-                {
-                 "height":96,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":544,
-                 "y":224
                 }, 
                 {
                  "height":32,
@@ -1564,19 +1252,6 @@ var levelmap2 = { "height":20,
                  "y":416
                 }, 
                 {
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":608,
-                 "y":576
-                }, 
-                {
                  "height":32,
                  "name":"",
                  "properties":
@@ -1634,4 +1309,4 @@ var levelmap2 = { "height":20,
  "tilewidth":32,
  "version":1,
  "width":30
-};
+}
