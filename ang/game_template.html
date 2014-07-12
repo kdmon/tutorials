@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
 
@@ -8,6 +9,7 @@
     <script src="jquery-1.8.2.min.js"></script>
     <script src="stats.min.js"></script>
     <script src="anglevel.js"></script>
+    <script src="anglevel2.js"></script>
     
     <style>z
       body {
@@ -280,7 +282,8 @@
           alert ("Well done you won!");
           // bug: todo: fix: can trigger during simulation step, thus crash. 
           // Add to event list to be executed on next frame.
-          init(); //box.setPosition("player", new b2Vec2(0,0));
+          //init(); //box.setPosition("player", new b2Vec2(0,0));
+          scene.load(levelmap2);
         }
         
       }
@@ -500,6 +503,29 @@
             entityB.hit(impulse, entityA);
           }
         });
+      
+        (function loop() {
+          stats.begin();
+          if (start) {
+            //box.applyImpulse("player", parseInt(angleElem.value), parseInt(powerElem.value));
+            start = false;
+          }
+          if (restart) {
+            init();
+            restart = false;
+          }
+          requestAnimFrame(loop);
+          framecount++;
+          cullObjects();
+          
+          draw();
+          step();
+          //if (Math.random () > 0.95) 
+          moveObjects();
+          stats.end();
+          //setTimeout(function () {loop();}, 1000/60);
+        })()
+        
       }
       var DRAGSTART = {
         x: 0,
@@ -901,29 +927,8 @@
               //console.log(initialState);
             }
           });
-          // start game once map is loaded
+          // start level once map is loaded
           init();
-          (function loop() {
-            stats.begin();
-            if (start) {
-              //box.applyImpulse("player", parseInt(angleElem.value), parseInt(powerElem.value));
-              start = false;
-            }
-            if (restart) {
-              init();
-              restart = false;
-            }
-            requestAnimFrame(loop);
-            framecount++;
-            cullObjects();
-            
-            draw();
-            step();
-            //if (Math.random () > 0.95) 
-            moveObjects();
-            stats.end();
-            //setTimeout(function () {loop();}, 1000/60);
-          })()
         },
         loadTileset: function(json) {
           this.data = json;
@@ -934,9 +939,9 @@
           })[0]
           this.tileset.onload = $.proxy(this.renderLayers, this);
         },
-        load: function(name) {
+        load: function(mapname) {
           
-          this.loadTileset (levelmap);
+          this.loadTileset (mapname);
           /*
           return $.ajax({
           url: name + ".json",
@@ -944,9 +949,12 @@
         }).done($.proxy(this.loadTileset, this));
         */
         
+        },
+        
+        unload: function () {
+          
         }
       };
-      scene.load("level1");
       var stats = new Stats();
       stats.setMode(0); // 0: fps, 1: ms
        // Align top-left
@@ -955,6 +963,9 @@
       stats.domElement.style.top = '0px';
       document.body.appendChild(stats.domElement);
     </script>
+    
+    <button onclick="scene.load(levelmap);">Load level1</button>
+    <button onclick="scene.load(levelmap2);">Load level2</button>
   </body>
 
 </html>
