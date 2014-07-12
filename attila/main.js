@@ -74,9 +74,8 @@ var main_state = {
         // Remove the timer
         this.game.time.events.remove(this.timer);
         
-        if (this.score==0){
-          $("Try harder!");
-        }
+        if (this.score==0).text("Try harder!");
+        
 
         // Start the 'main' state, which restarts the game
         this.game.state.start('main');
