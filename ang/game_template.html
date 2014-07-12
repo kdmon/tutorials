@@ -941,6 +941,7 @@
         },
         load: function(mapname) {
           
+          s = {};
           this.loadTileset (mapname);
           /*
           return $.ajax({
@@ -949,10 +950,6 @@
         }).done($.proxy(this.loadTileset, this));
         */
         
-        },
-        
-        unload: function () {
-          
         }
       };
       var stats = new Stats();
@@ -962,10 +959,9 @@
       stats.domElement.style.left = '0px';
       stats.domElement.style.top = '0px';
       document.body.appendChild(stats.domElement);
+      scene.load(levelmap)
     </script>
     
-    <button onclick="scene.load(levelmap);">Load level1</button>
-    <button onclick="scene.load(levelmap2);">Load level2</button>
   </body>
 
 </html>
