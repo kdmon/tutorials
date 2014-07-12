@@ -651,8 +651,8 @@
 
       function moveObjects() {
         if (!scene.reachedTarget) {
-          if (box.getSpeed("player") > 0.1) {
-            box.setAngle("player", (box.getVelocityAngle("player") + 80) / 180 * Math.PI);
+          if (box.getSpeed("player") > 0.3) {
+            box.setAngle("player", (box.getVelocityAngle("player")) / 180 * Math.PI);
           }
           var deltax = -(box.bodiesMap["player"].GetPosition().x - scene.targetx);
           var deltay = -(box.bodiesMap["player"].GetPosition().y - scene.targety);
@@ -836,7 +836,7 @@
               objects.forEach(function(object, i) {
                 object.name = (object.name) ? object.name : "unnamed" + i;
                 object.properties.alpha = (object.properties.alpha) ? object.properties.alpha : 1;
-                //                object.properties.angle = (object.properties.angle) ? object.properties.angle : 1;
+                object.properties.angle = (object.properties.angle) ? object.properties.angle : 0;
                 object.properties.mass = (object.properties.mass) ? object.properties.mass : 1;
                 object.properties.texture = (object.properties.texture) ? object.properties.texture : "default";
                 //object.type = (object.type) ? object.type : "dynamic";
