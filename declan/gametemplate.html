@@ -11,6 +11,36 @@
     <style>
       body {
         -webkit-transform: translateZ(0);
+        -webkit-touch-callout: none !important;
+      }
+      #controller {
+        position: absolute;
+        width: 100%;
+        bottom: 1em;
+        height: 8em;
+        padding: 0px;
+        margin: 0px;
+        z-index: 9999;
+      }
+      .control {
+        font-family: arial;
+        display: inline;
+        font-size: 2em;
+        text-align: center;
+        border: 1px #fff solid;
+        color: #fff;
+        background: rgba(0,0,0,0.3);
+        border-radius: 0.5em;
+        position: relative;
+        top: 2em;
+        width:2em;
+        height:2em;
+        padding: 1em;
+        margin: 0.25em;
+      }
+      #jump {
+        top: 1em;
+        padding: 1.2em;
       }
       * {
         margin: 0;
@@ -24,7 +54,9 @@
       }
       /* just to be sure these are full screen*/
       canvas {
-        display: block;
+        position: absolute;
+        top: 0px;
+        left: 0px;
       }
       /* To remove the scrollbars */
     </style>
@@ -248,7 +280,16 @@
   </head>
 
   <body>
-    <canvas id="c0" width="100%" height="100%"></canvas>
+    <div id="controller">
+    <center>
+      <div class="control" id="left"><</div>
+      <div class="control" id="jump">^</div>
+      <div class="control" id="right">></div>
+    </center>
+    </div>
+    
+    <canvas id="c0"></canvas>
+    
     <script>
       function Entity(id, x, y, angle, center, texture, type, alpha, mass) {
         this.id = id;
@@ -573,6 +614,14 @@
       document.addEventListener('touchmove', function(event) {
         event.preventDefault();
       }, false);
+      
+      
+      $('#left').on('touchstart', function(e){e.preventDefault();controls.left = true;}).on('touchend', function(e){e.preventDefault();controls.left = false;});
+      $('#jump').on('touchstart', function(e){e.preventDefault();controls.up = true;}).on('touchend', function(e){e.preventDefault();controls.up = false;});
+      $('#right').on('touchstart', function(e){e.preventDefault();controls.right = true;}).on('touchend', function(e){e.preventDefault();controls.right = false;});
+      
+      
+      
       document.onkeyup = function(key) {
         key = key || window.event;
         // move down
@@ -705,6 +754,7 @@
         //scene.zoom += -0.01 + (box.getVelocityAngle("player")/20000);
         ctx.scale(scene.zoom, scene.zoom);
         ctx.globalAlpha = 1;
+        
         var xcomp = box.bodiesMap["player"].GetPosition().x;
         var ycomp = box.bodiesMap["player"].GetPosition().y;
         ctx.translate(scene.camerax - xcomp, scene.cameray - ycomp);
@@ -715,6 +765,9 @@
         gradient.addColorStop(1, "#000000"); // second
         ctx.fillStyle = gradient;
         ctx.fillRect(-10000, -20000, 20000, 20000);
+        
+        //ctx.clearRect(0, 0, canvasWidth, canvasHeight)
+        
         //ctx.translate(((canvasWidth/scale/2) * 1/scene.zoom) -world["player"].x, ((canvasHeight/scale/2) * 1/scene.zoom) -world["player"].y);
         /*
       ctx.translate(-(box.bodiesMap["player"].GetPosition().x)/scale + scene.camerax, -( box.bodiesMap["player"].GetPosition().y)/scale + scene.cameray);*/
@@ -730,9 +783,9 @@
         reachedTarget: true,
         targetx: 2,
         targety: 2,
-        zoom: 1,
-        camerax: Math.floor(canvasWidth / scale) / 2,
-        cameray: Math.floor(canvasHeight / scale) / 2,
+        zoom: 1.4,
+        camerax: Math.floor(canvasWidth / scale) / 2 /1.4,
+        cameray: Math.floor(canvasHeight / scale) / 2 /1.4,
         layers: [],
         draw: function() {
           var l = 0;
