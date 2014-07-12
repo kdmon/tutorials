@@ -1,54 +1,115 @@
-<!DOCTYPE html>
-<html>
+// Instructions pop up "made by me:-)"
+function myFunction() {
+    alert("To help Charley across the obstacles, touch to jump!");
+}
 
-  <head>
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+// Initialize Phaser, and creates a 400x490px game
+var game = new Phaser.Game(800, 980, Phaser.AUTO, 'game_div');
 
-    <script type="text/javascript" src="phaser.min.js"></script>
-    <script type="text/javascript" src="main.js"></script>
+// Creates a new 'main' state that will contain the game
+var main_state = {
+  
+    // Function called first to load all the assets
+    preload: function() { 
+        // Change the background color of the game
+        this.game.load.image('background', 'background.png');
+        
+        // Load the bird sprite
+        this.game.load.image('bird', 'bird.png');  
+
+        // Load the pipe sprite
+        this.game.load.image('pipe', 'pipe.png');      
+    },
+
+    // Fuction called after 'preload' to setup the game 
+    create: function() { 
+        
+        // Set the background image
+        this.background = this.game.add.sprite(0, 0, 'background');
+        
+        // Display the bird on the screen
+        this.bird = this.game.add.sprite(100, 245, 'bird');
+        
+        // Add gravity to the bird to make it fall
+        this.bird.body.gravity.y = 1000; 
+
+        // Call the 'jump' function when the spacekey is hit 
+        // I changed it from: "this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);"
+        var space_key = this.game.input.onDown.add(this.jump, this);
+        //space_key.onDown.add(this.jump, this);
+
+        //this.game.input.game.touchStart(alert('test'));
+ 
+        // Create a group of 20 pipes
+        this.pipes = game.add.group();
+        this.pipes.createMultiple(20, 'pipe');  
+
+        // Timer that calls 'add_row_of_pipes' ever 1.5 seconds
+        this.timer = this.game.time.events.loop(1500, this.add_row_of_pipes, this);           
+
+        // Add a score label on the top left of the screen
+        this.score = 0;
+        var style = { font: "60px Arial", fill: "#000000" };
+        this.label_score = this.game.add.text(20, 20, "0", style);  
+    },
+
+    // This function is called 60 times per second
+    update: function() {
+        // If the bird is out of the world (too high or too low), call the 'restart_game' function
+        if (this.bird.inWorld == false)
+            this.restart_game(); 
+
+        // If the bird overlap any pipes, call 'restart_game'
+        this.game.physics.overlap(this.bird, this.pipes, this.restart_game, null, this);      
+    },
+
+    // Make the bird jump 
+    jump: function() {
+        // Add a vertical velocity to the bird
+        this.bird.body.velocity.y = -360;
+    },
+
+    // Restart the game
+    restart_game: function() {
+        // Remove the timer
+        this.game.time.events.remove(this.timer);
+        
+        if (this.score==0){
+          $("Try harder!");
+        }
+
+        // Start the 'main' state, which restarts the game
+        this.game.state.start('main');
+    },
+
+    // Add a pipe on the screen
+    add_one_pipe: function(x, y) {
+        // Get the first dead pipe of our group
+        var pipe = this.pipes.getFirstDead();
+
+        // Set the new position of the pipe
+        pipe.reset(x, y);
+
+         // Add velocity to the pipe to make it move left
+        pipe.body.velocity.x = -200; 
+               
+        // Kill the pipe when it's no longer visible 
+        pipe.outOfBoundsKill = true;
+    },
+
+    // Add a row of 6 pipes with a hole somewhere in the middle
+    add_row_of_pipes: function() {
+        var hole = Math.floor(Math.random()*5)+1;
+        
+        for (var i = 0; i < 8; i++)
+            if (i != hole && i != hole +1) 
+                this.add_one_pipe(800, i*120+20);
     
-    <title>Bear Jump</title>
-    <style>
-      #game_div,
-      p {
-        width: 100%;
-        margin: auto;
-        margin-top: 20px;
-      }
-      .center {
-        text-align: center
-      }
-    }
-    </style>
-  </head>
+        this.score += 1;
+        this.label_score.content = this.score;  
+    },
+};
 
-  <body>
-    <div data-role="page" id="page1">
-      <div data-role="header">
-        <h1>Page 1</h1>
-      </div>
-      <div data-role="main" class="ui-content">
-          
-       
-        <div id="topscore"></div>
-        <p>This is page one.</p> <a href="#page2" data-role="button">Page two</a>
-      </div>
-    </div>
-    <div data-role="page" id="page2">
-      <div data-role="header">
-        <h1>Page 2</h1>
-      </div>
-      <div data-role="main" class="ui-content">
-      <center>
-          <div id="game_div"></div>
-        </center>
-        <p>This is page two</p> <a href="#page1" data-role="button">Page one</a>
-      </div>
-    </div>
-  </body>
-
-</html>
+// Add and start the 'main' state to start the game
+game.state.add('main', main_state);  
+game.state.start('main'); 
