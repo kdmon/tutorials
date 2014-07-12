@@ -748,30 +748,13 @@
       }
 
       function draw() {
-        // repaint canvas
-        //alert (box.getVelocityAngle("player"));
-        ctx.save();
-        //scene.zoom += -0.01 + (box.getVelocityAngle("player")/20000);
-        ctx.scale(scene.zoom, scene.zoom);
-        ctx.globalAlpha = 1;
         
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
         var xcomp = box.bodiesMap["player"].GetPosition().x;
         var ycomp = box.bodiesMap["player"].GetPosition().y;
+        ctx.save();
+        ctx.scale(scene.zoom, scene.zoom);
         ctx.translate(scene.camerax - xcomp, scene.cameray - ycomp);
-        ctx.fillStyle = "#000000";
-        ctx.fillRect(xcomp - scene.camerax, ycomp - scene.cameray, 100 / scene.zoom, 100 / scene.zoom);
-        var gradient = ctx.createLinearGradient(0, -30, 0, -10);
-        gradient.addColorStop(0, "#000044"); // first color
-        gradient.addColorStop(1, "#000000"); // second
-        ctx.fillStyle = gradient;
-        ctx.fillRect(-10000, -20000, 20000, 20000);
-        
-        //ctx.clearRect(0, 0, canvasWidth, canvasHeight)
-        
-        //ctx.translate(((canvasWidth/scale/2) * 1/scene.zoom) -world["player"].x, ((canvasHeight/scale/2) * 1/scene.zoom) -world["player"].y);
-        /*
-      ctx.translate(-(box.bodiesMap["player"].GetPosition().x)/scale + scene.camerax, -( box.bodiesMap["player"].GetPosition().y)/scale + scene.cameray);*/
-        //ctx.drawImage(bg, 0, 0, 1920, 1200, -canvasWidth/scale/2 - box.bodiesMap["player"].GetPosition().x/5, -15 + canvasHeight/scale/2 - box.bodiesMap["player"].GetPosition().y/5,  canvasWidth/scale*2, canvasHeight/scale*2);
         scene.draw();
         ctx.restore();
       }
@@ -797,7 +780,10 @@
               y2: box.bodiesMap["player"].GetPosition().y + canvasHeight / scale / scene.zoom / 2
             };
             ctx.globalAlpha = s[layer].opacity;
-            if (0 < viewBounds.x || s[layer].canvas.width / scale > viewBounds.x2 || 0 < viewBounds.y || s[layer].canvas.width / scale > viewBounds.y2) ctx.drawImage(s[layer].canvas, 0, 0, s[layer].canvas.width, s[layer].canvas.height, 0, 0, s[layer].canvas.width / scale, s[layer].canvas.height / scale);
+            if (0 < viewBounds.x || s[layer].canvas.width / scale > viewBounds.x2 || 0 < viewBounds.y || s[layer].canvas.width / scale > viewBounds.y2){
+              //ctx.drawImage(s[layer].canvas, 0, 0, s[layer].canvas.width, s[layer].canvas.height, 0, 0, Math.round(s[layer].canvas.width / scale), Math.round(s[layer].canvas.height / scale));
+              ctx.drawImage(s[layer].canvas, 0, 0, s[layer].canvas.width, s[layer].canvas.height, 0, 0, Math.round(s[layer].canvas.width / scale), Math.round(s[layer].canvas.height / scale));
+            } 
             if (s[l].type == "objectLayer") {
               //alert ("rendering objects");
               // repaint canvas
@@ -981,13 +967,12 @@
             }
             framecount++;
             cullObjects();
-            draw();
-            step();
-            //if (Math.random () > 0.95) 
             movePlayer();
             moveObjects();
-            requestAnimFrame(loop);
+            step();
+            draw();
             stats.end();
+            requestAnimFrame(loop);
             //setTimeout(function () {loop();}, 1000/60);
           })()
         },
