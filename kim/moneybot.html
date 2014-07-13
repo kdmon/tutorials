@@ -266,17 +266,17 @@
     <script>
       $("#mainAcc").on("pageinit", function(event) {
         displayTransactions("main")
-        $("#mainClosingBal").text("Closing Balance " + currency + calculateBalance("main").toFixed(2))
+        $("#mainClosingBal").text("Closing Balance " + "£" + calculateBalance("main").toFixed(2))
       })
       
       $("#billAcc").on("pageinit", function(event) {
         displayTransactions("billing")
-        $("#billClosingBal").text("Closing Balance " + currency + calculateBalance("billing").toFixed(2))
+        $("#billClosingBal").text("Closing Balance " + "£" + calculateBalance("billing").toFixed(2))
       })
       
       $("#wallet").on("pageinit", function(event) {
         displayTransactions("wallet")
-        $("#walletClosingBal").text("Closing Balance " + currency + calculateBalance("wallet").toFixed(2))
+        $("#walletClosingBal").text("Closing Balance " + "£" + calculateBalance("wallet").toFixed(2))
       })
     </script>
   </body>
