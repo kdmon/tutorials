@@ -1,6 +1,6 @@
 // Instructions pop up "made by me:-)"
 function myFunction() {
-    alert("To help Charley across the obstacles, touch to jump!");
+    alert("To help Charley across the obstacles, touch to jump! Use two or more fingers to help him jump faster!");
 }
 
 // Initialize Phaser, and creates a 400x490px game
