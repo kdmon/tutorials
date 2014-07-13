@@ -242,10 +242,15 @@
           <label for="date"><b><center>Date</center></b></label>
           <input type="text" data-role="date" id="dateInput" placeholder="dd/mm/yy make this datepicker"><br>
           <label for="select-choice-1" class="select" ><b><center>Select Account</center></b></label>
-            <select name="select-choice-1" id="accSelet" data-mini="true">
+            <select name="select-choice-1" id="accSelect" data-mini="true">
             <option value="mainSelect">Main Account</option>
             <option value="billSelect">Billing Account</option>
             <option value="walletSelect">Wallet</option>
+            </select><br>
+          <label for="select-choice-1" class="select" ><b><center>Select Income or Expense</center></b></label>
+            <select name="select-choice-2" id="incomeSelect" data-mini="true">
+            <option value="expenseSelect">Expense</option>
+            <option value="incomeSelect">Income</option>
             </select><br>
           <label for="amount"><b><center>Amount</center></b></label>
           <input type="text" id="amountInput" placeholder="Enter amount.."><br>
@@ -261,17 +266,17 @@
     <script>
       $("#mainAcc").on("pageinit", function(event) {
         displayTransactions("main")
-        $("#mainClosingBal").text("Closing Balance " + "£" + calculateBalance("main"))
+        $("#mainClosingBal").text("Closing Balance " + ÿý" + calculateBalance("main"))
       })
       
       $("#billAcc").on("pageinit", function(event) {
         displayTransactions("billing")
-        $("#billClosingBal").text("Closing Balance " + "£" + calculateBalance("billing"))
+        $("#billClosingBal").text("Closing Balance " + ÿý" + calculateBalance("billing"))
       })
       
       $("#wallet").on("pageinit", function(event) {
         displayTransactions("wallet")
-        $("#walletClosingBal").text("Closing Balance " + "£" + calculateBalance("wallet"))
+        $("#walletClosingBal").text("Closing Balance " + ÿý" + calculateBalance("wallet"))
       })
     </script>
   </body>
