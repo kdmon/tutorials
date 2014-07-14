@@ -60,7 +60,7 @@ var main_state = {
     // Start the 'main' state, which restarts the game
     if(confirm("message")) this.game.state.start('main');
     else {
-      this.game.desrtoy();
+      this.game.destroy();
       $.mobile.navigate( "#page1" );
     }
   },
