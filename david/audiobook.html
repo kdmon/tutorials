@@ -68,18 +68,41 @@
     </div>
     
     <script>
+    
+      function navigate (elementid) {
+        currentStory = elementid;
+        generateHtml();
+      }
+      
        $("#page2").on("pagecreate", function(event) {
-        //alert('running');
         
-        
-        $.each( storyElements, function( key, storyElement ) {
-           if (currentStory == storyElement.id) {
-             $("#scene").text(storyElement.scene);
-           }
+         generateHtml ();
+         
         });
         
+        
+        function generateHtml () {
+          
+           $.each( storyElements, function( key, storyElement ) {
+           if (currentStory == storyElement.id) {
+             $("#scene").text(storyElement.scene);
+             $("#instruction").text(storyElement.instruction);
+             
+             var htmlString = '<audio controls><source src="' + storyElement.audio + '.ogg" type="audio/ogg">';
+             htmlString += '<source src="' + storyElement.audio + '.mp3" type="audio/mpeg">Your browser does not support the audio element.</audio>';
+             $("#audiocontainer").html(htmlString)
+
+
+             var htmlString = '<a href="#" onclick="navigate(' + storyElement.route1id + ')" data-role="button">' + storyElement.route1 + '</a>';
+             
+             htmlString += '<a href="#" onclick="navigate(' + storyElement.route2id + ')" data-role="button">' + storyElement.route2 + '</a>';
+              
+             $("#buttoncontainer").html(htmlString).trigger("create");
+
+           }
+        });
          
-      });
+      }
       
     </script>
 
