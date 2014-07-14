@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+    <link rel="stylesheet" href="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/v0.1.1/jquery.mobile.datepicker.css" />
+    <script src="https://rawgithub.com/jquery/jquery-ui/1.10.4/ui/jquery.ui.datepicker.js"></script>
+    <script id="mobile-datepicker" src="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/v0.1.1/jquery.mobile.datepicker.js"></script>
     <style>
       .expense{
         color:red;
@@ -14,6 +17,7 @@
     </style>
     
     <script>
+    
       var currency = "&pound;";
       var transactions = [{
         "date": "13/07/14",
@@ -145,6 +149,15 @@
         }
       }
        // alert('test' + " " + calculateBalance('wallet'));
+       
+      function addTrans(){
+        var tdate = $("#dateInput").val();
+        var tacc = $("#accSelect").val();
+        var tcat = $("#categorySelect").val();
+        var tinc = $("#incomeSelect").val();
+        var tamount = $("#amountSelect").val();
+      }
+      
     </script>
   </head>
 
@@ -222,6 +235,9 @@
         <h1>Week View</h1>
       </div>
       <div data-role="main" class="ui-content">
+      <ul data-role="listview" id="weekTransactions"></ul> 
+        <br>
+        <b><p id="weekClosingBal"></p></b>
         <p>This page will display balance for each day of the week, highlighing in red any negative balances</p> <a href="#myAccs" data-role="button">My Accounts</a>
         <a href="#main" data-role="button">Main</a>
       </div>
@@ -253,32 +269,30 @@
         <h1>New Transactions</h1>
       </div>
       <div data-role="content">
-        <form id="newTransForm" method="post" action="">
           <div class="ui-field-contain">
-          <label for="date"><b><center>Date</center></b></label>
-          <input type="text" data-role="date" id="dateInput" placeholder="dd/mm/yy" data-mini="true"><br>
-          <label for="select-choice-1" class="select" ><b><center>Select Account</center></b></label>
-            <select name="select-choice-1" id="accSelect" data-mini="true">
-            <option value="mainSelect">Main Account</option>
-            <option value="billSelect">Billing Account</option>
-            <option value="walletSelect">Wallet</option>
+          <label for="accSelect"><b><center>Date</center></b></label>
+          <input type="text" data-role="date" id="dateInput" data-inline="true" placeholder="dd/mm/yy" data-mini="true"><br>
+          <label for="accSelect" class="select" ><b><center>Select Account</center></b></label>
+            <select name="accSelect" id="accSelect" data-mini="true">
+            <option value="main">Main Account</option>
+            <option value="billing">Billing Account</option>
+            <option value="wallet">Wallet</option>
             </select><br>
-          <label for="select-choice-2" class="select" ><b><center>Select Category</center></b></label>
-            <select name="select-choice-2" id="CategorySelect" data-mini="true">
-            <option value="foodSelect">Food</option>
-            <option value="ctSelect">Council Tax</option>
-            <option value="wageSelect">Wages</option>
+          <label for="categorySelect" class="select" ><b><center>Select Category</center></b></label>
+            <select name="categorySelect" id="categorySelect" data-mini="true">
+            <option value="food">Food</option>
+            <option value="Council Tax">Council Tax</option>
+            <option value="Wages">Wages</option>
             </select><br>
-           <label for="select-choice-3" class="select" ><b><center>Select Income or Expense</center></b></label>
-            <select name="select-choice-3" id="incomeSelect" data-mini="true">
-            <option value="expenseSelect">Expense</option>
-            <option value="incomeSelect">Income</option>
+           <label for="incomeSelect" class="select" ><b><center>is it an Income?</center></b></label>
+            <select name="incomeSelect" id="incomeSelect" data-mini="true">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
             </select><br>
           <label for="amount"><b><center>Amount</center></b></label>
-          <input type="text" id="amountInput" placeholder="Enter amount.." data-mini="true"><br>
-          <input type="submit" value="Submit" data-mini="true">
+          <input type="text" id="amountSelect" placeholder="Enter amount.." data-mini="true"><br>
+          <input type="submit" value="submit" id="submit" data-mini="true">
         </div>
-        </form>
         <a href="#main" data-role="button" data-mini="true">Main Page</a>
       </div>
       <div data-role="footer">
@@ -300,6 +314,8 @@
         displayTransactions("wallet")
         $("#walletClosingBal").html("Closing Balance " + calculateBalance("wallet"))
       })
+      
+      $('#dateInput').datepicker({ dateFormat: 'dd-mm-yy' });
     </script>
   </body>
 
