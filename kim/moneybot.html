@@ -97,8 +97,10 @@
             }
             return (balance < 0) ? '<span class="expense">' + "&pound" + balance.toFixed(2) + "</span>" : "&pound;" + balance.toFixed(2);
             break;
-        }
-      }
+              }
+            }
+            
+            
       
       
       
@@ -242,7 +244,7 @@
         <h1>&copy;Kimberley Shepherd 2014</h1>
       </div>
     </div>
-    <div data-role="page" id="weekView">
+    <div data-role="page" id="week">
       <div data-role="header">
         <h1>Week View</h1>
       </div>
@@ -250,7 +252,8 @@
       <ul data-role="listview" id="weekTransactions"></ul> 
         <br>
         <b><p id="weekClosingBal"></p></b>
-        <p>This page will display balance for each day of the week, highlighing in red any negative balances</p> <a href="#myAccs" data-role="button">My Accounts</a>
+        <p>This page will display balance for each day of the week, highlighing in red any negative balances</p> 
+        <a href="#myAccs" data-role="button">My Accounts</a>
         <a href="#main" data-role="button">Main</a>
       </div>
       <div data-role="footer">
@@ -326,6 +329,11 @@
       $("#wallet").on("pageinit", function(event) {
         displayTransactions("wallet")
         $("#walletClosingBal").html("Closing Balance " + calculateBalance("wallet"))
+      })
+      
+      $("#week ").on("pageinit", function(event) {
+        displayTransactions("wallet")
+        $("#weekClosingBal").html("Closing Balance " + calculateBalance("week"))
       })
       
       //$('#dateInput').datepicker({ dateFormat: 'dd-mm-yy' });
