@@ -9,11 +9,11 @@ var main_state = {
   // Function called first to load all the assets
   preload: function() {
     // Change the background color of the game
-    this.game.load.image('background', 'assets/background.png');
+    this.game.load.image('background', 'background.png');
     // Load the bird sprite
-    this.game.load.image('bird', 'assets/bird.png');
+    this.game.load.image('bird', 'bird.png');
     // Load the pipe sprite
-    this.game.load.image('pipe', 'assets/pipe.png');
+    this.game.load.image('pipe', 'pipe.png');
   },
   // Fuction called after 'preload' to setup the game 
   create: function() {
@@ -58,7 +58,11 @@ var main_state = {
     // Remove the timer
     this.game.time.events.remove(this.timer);
     // Start the 'main' state, which restarts the game
-    this.game.state.start('main');
+    if(confirm("message")) this.game.state.start('main');
+    else {
+      this.game.destroy();
+      $.mobile.navigate( "#page1" );
+    }
   },
   // Add a pipe on the screen
   add_one_pipe: function(x, y) {
@@ -82,4 +86,3 @@ var main_state = {
 };
 // Add and start the 'main' state to start the game
 game.state.add('main', main_state);
-game.state.start('main');
