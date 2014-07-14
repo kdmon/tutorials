@@ -279,7 +279,7 @@
         this.isHit = true;
         if (this.id == "player" && source.id == "player") {}
         else if (this.id == "player" && source.id == "goal") {
-          alert ("Well done you won!");
+          alert ("Well done, you won!");
           // bug: todo: fix: can trigger during simulation step, thus crash. 
           // Add to event list to be executed on next frame.
           //init(); //box.setPosition("player", new b2Vec2(0,0));
@@ -458,6 +458,7 @@
       var running = true;
       var start = false;
       var restart = false;
+      var initialised = false;
       
        // textures
 
@@ -469,6 +470,7 @@
       var framecount = 0;
 
       function init() {
+        box = {};
         score = 0;
         scene.reachedTarget = true;
         world = {};
@@ -503,28 +505,30 @@
             entityB.hit(impulse, entityA);
           }
         });
-      
-        (function loop() {
-          stats.begin();
-          if (start) {
-            //box.applyImpulse("player", parseInt(angleElem.value), parseInt(powerElem.value));
-            start = false;
-          }
-          if (restart) {
-            init();
-            restart = false;
-          }
-          requestAnimFrame(loop);
-          framecount++;
-          cullObjects();
-          
-          draw();
-          step();
-          //if (Math.random () > 0.95) 
-          moveObjects();
-          stats.end();
-          //setTimeout(function () {loop();}, 1000/60);
-        })()
+        if (!initialised){initialised = true;
+          (function loop() {
+            stats.begin();
+            if (start) {
+              //box.applyImpulse("player", parseInt(angleElem.value), parseInt(powerElem.value));
+              start = false;
+            }
+            if (restart) {
+              init();
+              restart = false;
+            }
+            requestAnimFrame(loop);
+            framecount++;
+            cullObjects();
+            
+            draw();
+            step();
+            //if (Math.random () > 0.95) 
+            moveObjects();
+            stats.end();
+            //setTimeout(function () {loop();}, 1000/60);
+          })()
+        
+        }
         
       }
       var DRAGSTART = {
