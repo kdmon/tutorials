@@ -61,8 +61,7 @@
   <body>
     <div data-role="page" id="page1">
       <center>
-        <div data-role="main" class="ui-content">
-          <a href="#page2" class="button">Play</a>
+        <div data-role="main" class="ui-content"> <a href="#page2" class="button">Play</a>
           <button class="button" onclick="myFunction()" class="button">Instructions!</button>
       </center>
       <center>
@@ -78,7 +77,7 @@
           </center>
       </div>
       <script>
-        $("#page2").on("pagecreate", function () {
+        $("#page2").on("pagecreate", function() {
           game.state.start('main');
         });
       </script>
