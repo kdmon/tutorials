@@ -44,7 +44,7 @@
           route1: "Drink odd looking water",
           route1id: 10,
           route2: "Find some change",
-          route2id :11 ,
+          route2id :11,
         },
         
         {
@@ -91,6 +91,17 @@
           route2: "No thank you",
           route2id :20 ,
         },
+        {
+          id : 10,
+          scene : "Drink odd looking water",
+          audio: "4 drink",
+          picture: "",
+          instruction : "Do you want to start again?",
+          route1: "Back to the start",
+          route1id: 1,
+          route2: "No thank you",
+          route2id :20 ,
+        },
         
         {
           id : 11,
@@ -99,7 +110,7 @@
           picture: "",
           instruction : "What do you want to do?",
           route1: "Go to the shop",
-          route1id: 1,
+          route1id: 14,
           route2: "Go back to bed",
           route2id :7 ,
         },
@@ -114,10 +125,43 @@
           route1: "Back to the start",
           route1id: 1,
           route2: "No thank you",
-          route2id :20 ,
+          route2id :20,
         },
       ];
-    
+      {
+          id : 14,
+          scene :"Go to the shop",
+          audio: "11 shop",
+          picture: "",
+          instruction : "What do you want to do?",
+          route1: "Leave through the back door",
+          route1id: 15,
+          route2: "Leave through the front door",
+          route2id :16,
+        },
+         {
+          id : 15,
+          scene : "Leave through the back door",
+          audio: "12 manager",
+          picture: "",
+          instruction : "Want to start again?",
+          route1: "Back to the start",
+          route1id: 1,
+          route2: "No thank you",
+          route2id :20,
+        },
+     {
+          id : 16,
+          scene : "Leave through the front door",
+          audio: "13 final police",
+          picture: "",
+          instruction : "Want to start again?",
+          route1: "Back to the start",
+          route1id: 1,
+          route2: "No thank you",
+          route2id :20,
+        },
+        
     </script>
   </head>
 
