@@ -47,6 +47,7 @@
         "amount": 10.00,
         "account": "wallet"
       }];
+      
       var accounts = [{
         "name": "Main Account",
         id: "main"
@@ -58,7 +59,7 @@
         id: "wallet"
       }];
 
-      
+   
       
       function calculateBalance(account) {
         var balance = 0;
@@ -156,12 +157,18 @@
         var tcat = $("#categorySelect").val();
         var tinc = $("#incomeSelect").val();
         var tamount = $("#amountSelect").val();
+        //transactions[transactions.length] = "lemon";
         console.log(tdate);
         console.log(tacc);
         console.log(tcat);
         console.log(tinc);
         console.log(tamount);
+        console.log(transactions[5].date + " " + transactions[5].category + " " + transactions[5].amount + " " + transactions[5].account + " " + transactions[5].income);
       }
+      
+        
+    
+        
       
     </script>
   </head>
