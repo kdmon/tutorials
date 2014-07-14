@@ -7,8 +7,14 @@
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+    <style>
+      .expense{
+        color:red;
+      }
+    </style>
+    
     <script>
-      var currency = "&#163;";
+      var currency = "&pound;";
       var transactions = [{
         "date": "13/07/14",
         "category": "Food",
@@ -48,6 +54,8 @@
         id: "wallet"
       }];
 
+      
+      
       function calculateBalance(account) {
         var balance = 0;
         switch (account) {
@@ -56,9 +64,13 @@
               if (transactions[i].account == "main") {
                 if (transactions[i].income) balance += transactions[i].amount;
                 else balance -= transactions[i].amount;
+              
+                
               }
             }
-            return balance;
+              
+              
+            return (balance < 0) ? '<span class="expense">' + "&pound" + balance.toFixed(2) + "</span>" : "&pound;" + balance.toFixed(2);
             break;
           case "billing":
             for (i = 0; i < transactions.length; i++) {
@@ -66,8 +78,10 @@
                 if (transactions[i].income) balance += transactions[i].amount;
                 else balance -= transactions[i].amount;
               }
+              
             }
-            return balance;
+              
+            return (balance < 0) ? '<span class="expense">' + "&pound" + balance.toFixed(2) + "</span>" : "&pound;" + balance.toFixed(2);
             break;
           case "wallet":
             for (i = 0; i < transactions.length; i++) {
@@ -76,28 +90,30 @@
                 else balance -= transactions[i].amount;
               }
             }
-            return balance;
+            return (balance < 0) ? '<span class="expense">' + "&pound" + balance.toFixed(2) + "</span>" : "&pound;" + balance.toFixed(2);
             break;
         }
       }
-
+      
+      
+      
       function listTransactionMain(id, account, income) {
-     
-        $("#mainTransactions").append("<li>" + transactions[id].date + " " + transactions[id].category + " " + currency + transactions[id].amount.toFixed(2) + "</li>" );
+        var negBal= (transactions[id].income) ?  currency + transactions[id].amount.toFixed(2) + "</li>" : '<span class="expense">' + currency + transactions[id].amount.toFixed(2) + "</span></li>";
+        $("#mainTransactions").append("<li>" + transactions[id].date + " " + transactions[id].category + " " +  negBal);
         $("#mainTransactions").listview("refresh");
       
       }
       
       function listTransactionBilling(id, account, income) {
-     
-        $("#billTransactions").append("<li>" + transactions[id].date + " " + transactions[id].category + " " + currency + transactions[id].amount.toFixed(2) + "</li>" );
+        var negBal= (transactions[id].income) ?  currency + transactions[id].amount.toFixed(2) + "</li>" : '<span class="expense">' + currency + transactions[id].amount.toFixed(2) + "</span></li>";
+        $("#billTransactions").append("<li>" + transactions[id].date + " " + transactions[id].category + " " + negBal);
         $("#billTransactions").listview("refresh");
        
       }
       
       function listTransactionWallet(id, account, income) {
-     
-        $("#walletTransactions").append("<li>" + transactions[id].date + " " + transactions[id].category + " " + currency + transactions[id].amount.toFixed(2) + "</li>" );
+        var negBal= (transactions[id].income) ?  currency + transactions[id].amount.toFixed(2) + "</li>" : '<span class="expense">' + currency + transactions[id].amount.toFixed(2) + "</span></li>";
+        $("#walletTransactions").append("<li>" + transactions[id].date + " " + transactions[id].category + " " + negBal);
         $("#walletTransactions").listview("refresh");
        
       }
@@ -138,7 +154,7 @@
         <h1>moneyBot</h1>
       </div>
       <div data-role="main" class="ui-content">
-        <img src="http://wiki.it4se.com/images/4/4a/Moneybot.jpg"> 
+        <center><img src="http://wiki.it4se.com/images/4/4a/Moneybot.jpg"></center>
         <a href="#myAccs" data-role="button">My Accounts</a>
         <a href="#newTrans" data-role="button">New Transactions</a>
         <a href="#weekView" data-role="button">Week View</a>
@@ -240,20 +256,26 @@
         <form id="newTransForm" method="post" action="">
           <div class="ui-field-contain">
           <label for="date"><b><center>Date</center></b></label>
-          <input type="text" data-role="date" id="dateInput" placeholder="dd/mm/yy make this datepicker"><br>
+          <input type="text" data-role="date" id="dateInput" placeholder="dd/mm/yy" data-mini="true"><br>
           <label for="select-choice-1" class="select" ><b><center>Select Account</center></b></label>
             <select name="select-choice-1" id="accSelect" data-mini="true">
             <option value="mainSelect">Main Account</option>
             <option value="billSelect">Billing Account</option>
             <option value="walletSelect">Wallet</option>
             </select><br>
-          <label for="select-choice-1" class="select" ><b><center>Select Income or Expense</center></b></label>
-            <select name="select-choice-2" id="incomeSelect" data-mini="true">
+          <label for="select-choice-2" class="select" ><b><center>Select Category</center></b></label>
+            <select name="select-choice-2" id="CategorySelect" data-mini="true">
+            <option value="foodSelect">Food</option>
+            <option value="ctSelect">Council Tax</option>
+            <option value="wageSelect">Wages</option>
+            </select><br>
+           <label for="select-choice-3" class="select" ><b><center>Select Income or Expense</center></b></label>
+            <select name="select-choice-3" id="incomeSelect" data-mini="true">
             <option value="expenseSelect">Expense</option>
             <option value="incomeSelect">Income</option>
             </select><br>
           <label for="amount"><b><center>Amount</center></b></label>
-          <input type="text" id="amountInput" placeholder="Enter amount.."><br>
+          <input type="text" id="amountInput" placeholder="Enter amount.." data-mini="true"><br>
           <input type="submit" value="Submit" data-mini="true">
         </div>
         </form>
@@ -266,17 +288,17 @@
     <script>
       $("#mainAcc").on("pageinit", function(event) {
         displayTransactions("main")
-        $("#mainClosingBal").text("Closing Balance " + "£" + calculateBalance("main").toFixed(2))
+        $("#mainClosingBal").html("Closing Balance " + calculateBalance("main"))
       })
       
       $("#billAcc").on("pageinit", function(event) {
         displayTransactions("billing")
-        $("#billClosingBal").text("Closing Balance " + "£" + calculateBalance("billing").toFixed(2))
+        $("#billClosingBal").html("Closing Balance " + calculateBalance("billing"))
       })
       
       $("#wallet").on("pageinit", function(event) {
         displayTransactions("wallet")
-        $("#walletClosingBal").text("Closing Balance " + "£" + calculateBalance("wallet").toFixed(2))
+        $("#walletClosingBal").html("Closing Balance " + calculateBalance("wallet"))
       })
     </script>
   </body>
