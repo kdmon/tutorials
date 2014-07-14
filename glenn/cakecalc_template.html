@@ -66,15 +66,72 @@
         }]
       }];
 
+      // Global variable used to temporarily store cake being added
+      var newcake = {};
+        
       function addCake() {
-        var cakename = $("#cakename").val();
-        var cakeshape = $("#cakeshape").val();
-        var cakewidth = $("#cakewidth").val();
-        var cakelength = $("#cakelength").val();console.log(cakename)
+        newcake = {};  // Remove any previously entered cake
+        
+        // Read in new cake details from the input forms
+        newcake.name = $("#cakename").val();
+        newcake.shape = $("#cakeshape").val();
+        newcake.width = $("#cakewidth").val();
+        newcake.length = $("#cakelength").val();
+        newcake.ingredients = {};
+        
+        // Show ingredients page
+        $.mobile.navigate( "#addingredients" );
+        
       };
+      
+      function addIngredient () {
+        /* This function should: 
+        
+        1. add entered ingredients to the newcake object 
+        2. refresh the list of ingredients in the #addedingredients div
+        3. clear the input boxes to allow user to enter another ingredient
+        */
+      }
+      
+      
+      function listRecipes () {
+        
+        $("#savedrecipes").html(''); // clear recipe list
+        
+        // loop through each object in the recipe list, using jQuery .each
+        
+        $.each(recipe, function(i) {
+          $("#savedrecipes").append('<a href="#" data-role="button" onclick="showRecipe(' + i + ')">' + recipe[i].name + '</a>');
+        });
+        
+        // Force jQuery Mobile to apply styles to new recipe buttons
+        $("#savedrecipes").trigger("create");
+        
+      }
+      
+      function saveCake () {
+        // This function adds the newcake object to the recipe list and 
+        // navigates the user back to the home screen:
+        
+        recipe.push (newcake);
+        
+        console.log(recipe)
+        
+        $.mobile.navigate( "#homepage" );
+      }
 
-      function recipename(i) {
-        $("#recipe").html("<p><b>" + recipe[i].size + recipe[i].unit + recipe[i].shape + recipe[i].name + "</b></p>");
+
+      function showRecipe (i) {
+        
+        $("#recipename").text(recipe[i].name);
+        
+        $("#recipeingredients").html('');
+        
+        $.each(recipe[i].ingredients, function(i,item) {
+          $("#recipeingredients").append('<li>' + item.amount + ' ' + item.unit + ' ' + item.name + '</a>');
+        });
+        
+        $.mobile.navigate( "#recipedetails" );
       }
 
       function recipeingredients(i) {
@@ -102,9 +159,10 @@
       </div>
       <div data-role="main" class="ui-content">
         <div id="recipe"></div>
-        <div id="ingredients"></div> <a href="#addcake" data-role="button" data-icon="plus" data-iconpos="right">Add Recipe</a>
-        <p align="center">Saved Recipes.</p> <a href="#recipedetails" data-role="button" data-icon="arrow-r" data-iconpos="right">Normal size choko cake</a>
-        <a href="javascript: calculate(2,0)" data-role="button" data-icon="arrow-r" data-iconpos="right">Double size choko cake</a>
+        <div id="ingredients"></div>
+        <a href="#addcake" data-role="button" data-icon="plus" data-iconpos="right">Add Recipe</a>
+        <p align="center">Saved Recipes:</p>
+        <div id="savedrecipes"></div>
       </div>
     </div>
     <div data-role="page" id="recipedetails">
@@ -143,7 +201,8 @@
             <input type="text" id="cakelength" />
           </fieldset>
         </div>
-        <!--2 text boxes length & width identified as cm with X between them--> <a href="#" data-role="button" onclick="addCake()">Add Ingredients</a>
+        <!--2 text boxes length & width identified as cm with X between them-->
+        <a href="#" data-role="button" onclick="addCake()">Add Ingredients</a>
       </div>
     </div>
     <div data-role="page" id="addingredients">
@@ -167,10 +226,19 @@
           </fieldset>
         </div>
         <a href="#" data-role="button" onclick="addIngredient()">Add Ingredient</a>
-        <a href="#" data-role="button" >Cake Finished!</a>
+        <div id="addedingredients"></div>
+        <a href="#" onclick="saveCake()" data-role="button" >Cake Finished!</a>
         <a href="#homepage" data-role="button">Home</a>
       </div>
     </div>
+    
+    
+    <script>
+      $("#homepage").on("pageshow", function(event) {
+        listRecipes();
+      })
+    </script>
+    
   </body>
 
 </html>
