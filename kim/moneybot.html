@@ -156,6 +156,11 @@
         var tcat = $("#categorySelect").val();
         var tinc = $("#incomeSelect").val();
         var tamount = $("#amountSelect").val();
+        console.log(tdate);
+        console.log(tacc);
+        console.log(tcat);
+        console.log(tinc);
+        console.log(tamount);
       }
       
     </script>
@@ -291,7 +296,7 @@
             </select><br>
           <label for="amount"><b><center>Amount</center></b></label>
           <input type="text" id="amountSelect" placeholder="Enter amount.." data-mini="true"><br>
-          <input type="submit" value="submit" id="submit" data-mini="true">
+          <a data-role="button" onclick="addTrans()">Add</a>
         </div>
         <a href="#main" data-role="button" data-mini="true">Main Page</a>
       </div>
@@ -315,7 +320,8 @@
         $("#walletClosingBal").html("Closing Balance " + calculateBalance("wallet"))
       })
       
-      $('#dateInput').datepicker({ dateFormat: 'dd-mm-yy' });
+      //$('#dateInput').datepicker({ dateFormat: 'dd-mm-yy' });
+      
     </script>
   </body>
 
