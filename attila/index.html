@@ -11,6 +11,44 @@
     <script type="text/javascript" src="main.js"></script>
     <title>Bear Jump</title>
     <style>
+    
+    div
+{
+background-image: url(assets/crissXcross.png);
+}
+
+.button {
+   border-top: 1px solid #dbdbdb;
+   background: #464d52;
+   background: -webkit-gradient(linear, left top, left bottom, from(#78848c), to(#464d52));
+   background: -webkit-linear-gradient(top, #78848c, #464d52);
+   background: -moz-linear-gradient(top, #78848c, #464d52);
+   background: -ms-linear-gradient(top, #78848c, #464d52);
+   background: -o-linear-gradient(top, #78848c, #464d52);
+   padding: 9px 18px;
+   -webkit-border-radius: 30px;
+   -moz-border-radius: 30px;
+   border-radius: 30px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 19px;
+   font-family: Georgia, Serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.button:hover {
+   border-top-color: #1b262e;
+   background: #1b262e;
+   color: #ccc;
+   }
+.button:active {
+   border-top-color: #000000;
+   background: #000000;
+   }
+    
       #game_div,
       p {
         width: 100%;
@@ -26,15 +64,23 @@
 
   <body>
     <div data-role="page" id="page1">
-    <bgcolor="#000000">
-      <div data-role="header"></div>
-      <div data-role="main" class="ui-content"> <a href="#page2" data-role="button">Play</a>
-        <button onclick="myFunction()">Instructions!</button>
+      <center><div data-role="main" class="ui-content"> <a href="#page2" class="button">Play</a>
+        <button class="button"onclick="myFunction()"class="button">Instructions!</button>
+        </center>
+        
+         <center><img src="../DSCF0031.png" alt="DSCF0031" width="418" height="480"></center>
+        
       </div>
+      
+     
+      
     </div>
     <div data-role="page" id="page2">
+    
+    
       
       <div data-role="main" class="ui-content">
+      <bgcolor="#E6E6FA">
         <center>
           <div id="game_div"></div>
         </center>
