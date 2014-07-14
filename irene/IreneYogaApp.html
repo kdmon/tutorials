@@ -47,7 +47,7 @@
         "sanskrit": "Baddha Konasana",
         "image": "cobblerpose.jpg",
         "benefits": "Brings life to the feet, moves the hips",
-        "audio": ""
+        "audio": "badhakonasana"
       }, {
         "class": "posture",
         "english": "Warrior 2",
@@ -136,7 +136,7 @@
         "audio": ""
       }];
 
-      function showWord(wordIndex) {
+      function showPosture(wordIndex) {
         // this updates the words details page
         var translation = "<h1 style='color:red'>" + words[wordIndex].english + "</h1>";
         if (words[wordIndex].French) {
@@ -153,6 +153,13 @@
         }
         if (words[wordIndex].benefits) {
           translation += "<h3 style='color:purple'>" + words[wordIndex].benefits + "</h3>";
+        }
+        if (words[wordIndex].audio) {
+          translation += "<audio controls>";
+          translation += '<source src="' + words[wordIndex].audio + '.mp3" type="audio/mpeg">';
+          translation += '<source src="' + words[wordIndex].audio + '.ogg" type="audio/ogg">';
+          translation += "Your browser does not support the audio element.";
+          translation += "</audio>";
         }
         var wordContainer = document.getElementById("wordDetails");
         wordContainer.innerHTML = translation;
@@ -173,7 +180,7 @@
       $("#list").live("pageinit", function(event) {
         $("#wordList").append('<li data-role="list-divider">Yoga postures  </li>');
         for (i = 0; i < words.length; i++) {
-          $("#wordList").append('<li><a data-role="button" href="javascript: showWord(' + i + ');"><img data-icon="true" src="' + words[i].image + '">' + words[i].english + "<br>" + words[i].sanskrit + '</a></li>');
+          $("#wordList").append('<li><a data-role="button" href="javascript: showPosture(' + i + ');"><img data-icon="true" src="' + words[i].image + '">' + words[i].english + "<br>" + words[i].sanskrit + '</a></li>');
         }
         // this makes sure the buttons are styled
         $("#wordList").listview("refresh");
@@ -213,7 +220,7 @@
       <div data-role="header"> <a href="#" data-rel="back" data-role="button">Back</a> 
         <h1>About the App</h1>
       </div>
-      <div data-role="content">This App gives a list of yoga postures with the english and sanskrit names.Each posture has an image and the benefits that can be derived by regular practice. There is an audio button giving instructions on how to practice the posture.</div>
+      <div data-role="content">This app has been developed for anyone who would like a short practice.</div>
       <div data-role="footer">
         <h1>&copy; I Beldon 2014</h1>
       </div>
@@ -232,11 +239,11 @@
         <h1>&copy; I Beldon 2014</h1>
       </div>
     </div>
-    <div data-role="page" id="Who">
+    <div data-role="page" id="Meditation">
       <div data-role="header"> <a href="#" data-rel="back" data-role="button">Back</a> 
-        <h1>Who is it for</h1>
+        <h1>Guided Meditation</h1>
       </div>
-      <div data-role="content">This app is for anyone who wants</div>
+      <div data-role="content">This section is in development</div>
       <div data-role="footer">
         <h1>&copy; I Beldon 2014</h1>
       </div>
