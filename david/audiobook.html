@@ -7,6 +7,38 @@
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+    <script>
+
+      var currentStory = 1;
+      
+      var storyElements = [
+        {
+          id : 1,
+          scene : "Awake",
+          audio: "1awake",
+          picture: "",
+          instruction : "What would you like to do now?",
+          route1: "Open the curtains",
+          route1id: 2,
+          route2: "Go to the kitchen",
+          route2id : 3
+        },
+        
+         {
+          id : 2,
+          scene : "Curtains",
+          audio: "2 curtains",
+          picture: "",
+          instruction : "What would you like to do now?",
+          route1: "Investigate the garden",
+          route1id: 6,
+          route2: "Go back to bed",
+          route2id : 7
+        }
+        
+      ];
+    
+    </script>
   </head>
 
   <body>
@@ -16,18 +48,40 @@
         <h1>Page 1</h1>
       </div>
       <div data-role="main" class="ui-content">
-        <p>This is page one.</p> <a href="#page2" data-role="button">Page two</a>
+        <p>This is page one.</p>
+        <a href="#page2" data-role="button">Page two</a>
       </div>
     </div>
 
     <div data-role="page" id="page2">
       <div data-role="header">
-        <h1>Page 2</h1>
+        <h1 id="scene">scene</h1>
       </div>
       <div data-role="main" class="ui-content">
-        <p>This is page two</p> <a href="#page1" data-role="button">Page one</a>
+        <div id="audiocontainer"></div>
+        
+        <h3 id="instruction"></h3>
+        
+        <div id="buttoncontainer"></div>
+
       </div>
     </div>
+    
+    <script>
+       $("#page2").on("pagecreate", function(event) {
+        //alert('running');
+        
+        
+        $.each( storyElements, function( key, storyElement ) {
+           if (currentStory == storyElement.id) {
+             $("#scene").text(storyElement.scene);
+           }
+        });
+        
+         
+      });
+      
+    </script>
 
   </body>
 
