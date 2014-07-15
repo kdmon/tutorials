@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+    <link rel="stylesheet" href="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/v0.1.1/jquery.mobile.datepicker.css" />
     <link rel="stylesheet" href="monBot-theme.min.css" />
+    <script src="https://rawgithub.com/jquery/jquery-ui/1.10.4/ui/jquery.ui.datepicker.js"></script>
+    <script id="mobile-datepicker" src="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/v0.1.1/jquery.mobile.datepicker.js"></script>
     <style>
       .expense{
         color:red;
@@ -68,12 +71,8 @@
               if (transactions[i].account == "main") {
                 if (transactions[i].income) balance += transactions[i].amount;
                 else balance -= transactions[i].amount;
-              
-                
               }
             }
-              
-              
             return (balance < 0) ? '<span class="expense">' + "&pound" + balance.toFixed(2) + "</span>" : "&pound;" + balance.toFixed(2);
             break;
           case "billing":
@@ -82,9 +81,7 @@
                 if (transactions[i].income) balance += transactions[i].amount;
                 else balance -= transactions[i].amount;
               }
-              
             }
-              
             return (balance < 0) ? '<span class="expense">' + "&pound" + balance.toFixed(2) + "</span>" : "&pound;" + balance.toFixed(2);
             break;
           case "wallet":
@@ -153,8 +150,7 @@
             //break;
         }
       }
-       // alert('test' + " " + calculateBalance('wallet'));
-       
+
       function addTrans(){
         var tdate = $("#dateInput").val();
         var tacc = $("#accSelect").val();
@@ -173,10 +169,18 @@
         
       }
       
-      function deleteTrans(){
-       
-       // 
-      //clear all objects from the array within account
+      /*function deleteAccTrans(account) {
+        switch (account) {
+          case "main":
+            for (i = 0; i < transactions.length; i++) {
+              if (transactions[i].account == "main") {
+                transaction{}
+              }
+            }
+            break;
+      */
+            
+      /*clear all objects from the array within account
         var tdate = $("#dateInput").val();
         var tacc = $("#accSelect").val();
         var tcat = $("#categorySelect").val();
@@ -190,9 +194,8 @@
           account: tacc,
           income: ti,
           amount: tamount
-        });
+        });*/
         
-      }
       
       function submit(){
         addTrans();
