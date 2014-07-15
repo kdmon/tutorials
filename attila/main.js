@@ -14,6 +14,7 @@ var main_state = {
     this.game.load.image('bird', 'bird.png');
     // Load the pipe sprite
     this.game.load.image('pipe', 'pipe.png');
+    this.game.pause = false;
   },
   // Fuction called after 'preload' to setup the game 
   create: function() {
@@ -43,10 +44,12 @@ var main_state = {
   },
   // This function is called 60 times per second
   update: function() {
+    if (this.game.pause == false){
     // If the bird is out of the world (too high or too low), call the 'restart_game' function
     if (this.bird.inWorld == false) this.restart_game();
     // If the bird overlap any pipes, call 'restart_game'
     this.game.physics.overlap(this.bird, this.pipes, this.restart_game, null, this);
+    }
   },
   // Make the bird jump 
   jump: function() {
@@ -58,9 +61,13 @@ var main_state = {
     // Remove the timer
     this.game.time.events.remove(this.timer);
     // Start the 'main' state, which restarts the game
-    if(confirm("message")) this.game.state.start('main');
-    else {
-      this.game.destroy();
+    if(confirm("Try again.")) {
+      this.game.pause = false;
+      this.game.state.start('main');
+
+}
+else {
+      this.game.pause=true;
       $.mobile.navigate( "#page1" );
     }
   },
@@ -86,3 +93,4 @@ var main_state = {
 };
 // Add and start the 'main' state to start the game
 game.state.add('main', main_state);
+ 
