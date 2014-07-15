@@ -21,6 +21,7 @@
     <script>
     
       var currency = "&pound;";
+      
       var transactions = [{
         "date": "13/07/14",
         "category": "Food",
@@ -101,11 +102,7 @@
             break;
               }
             }
-            
-            
-      
-      
-      
+
       function listTransactionMain(id, account, income) {
         var negBal= (transactions[id].income) ?  currency + transactions[id].amount.toFixed(2) + "</li>" : '<span class="expense">' + currency + transactions[id].amount.toFixed(2) + "</span></li>";
         $("#mainTransactions").append("<li>" + transactions[id].date + " " + transactions[id].category + " " +  negBal);
@@ -178,13 +175,33 @@
           amount: tamount
         });
         
-        
-        console.log(transactions);
       }
       
+      function deleteTrans(){
+       
+       // 
+      //clear all objects from the array within account
+        var tdate = $("#dateInput").val();
+        var tacc = $("#accSelect").val();
+        var tcat = $("#categorySelect").val();
+        var tinc = $("#incomeSelect").val();
+        var tamount = parseFloat($("#amountSelect").val());
+        var ti = (tinc == "true") ? true : false;
         
-    
+        transactions.push({
+          category : tcat,
+          date: tdate,
+          account: tacc,
+          income: ti,
+          amount: tamount
+        });
         
+      }
+      
+      function submit(){
+        addTrans();
+        alert("Transaction Added");
+        };
       
     </script>
   </head>
@@ -266,6 +283,7 @@
       <ul data-role="listview" id="weekTransactions"></ul> 
         <br>
         <b><p id="weekClosingBal"></p></b>
+        <p>THIS PAGE IS NOT FUNCTIONAL.</p>
         <p>This page will display balance for each day of the week, highlighing in red any negative balances</p> 
         <a href="#myAccs" data-role="button">My Accounts</a>
         <a href="#main" data-role="button">Main</a>
@@ -320,7 +338,7 @@
             </select><br>
           <label for="amount"><b><center>Amount</center></b></label>
           <input type="text" id="amountSelect" placeholder="Enter amount.." data-mini="true"><br>
-          <a data-role="button" data-mini="true" onclick="addTrans()">Add Transaction</a>
+          <a data-role="button" id="submitTrans" data-mini="true" onclick="submit()">Add Transaction</a>
           <br>
           <a href="#main" data-role="button" data-mini="true">Main Page</a>
         </div>
@@ -345,12 +363,12 @@
         $("#walletClosingBal").html("Closing Balance " + calculateBalance("wallet"))
       })
       
-      $("#week").on("pageinit", function(event) {
+      $("#week").on("pagebeforeshow", function(event) {
         displayTransactions("wallet")
         $("#weekClosingBal").html("Closing Balance " + calculateBalance("week"))
       })
       
-      //$('#dateInput').datepicker({ dateFormat: 'dd-mm-yy' });
+      
       
     </script>
   </body>
