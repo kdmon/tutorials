@@ -6,7 +6,7 @@ var level5 ={ "height":15,
          "name":"bk",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":25,
          "x":0,
          "y":0
@@ -17,7 +17,7 @@ var level5 ={ "height":15,
          "name":"maze",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":25,
          "x":0,
          "y":0
@@ -26,6 +26,34 @@ var level5 ={ "height":15,
          "height":15,
          "name":"obstacles",
          "objects":[
+                {
+                 "ellipse":true,
+                 "height":25,
+                 "name":"player",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":25,
+                 "x":48,
+                 "y":388
+                }, 
+                {
+                 "ellipse":true,
+                 "height":32,
+                 "name":"goal",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":736,
+                 "y":416
+                }, 
                 {
                  "height":160,
                  "name":"",
@@ -480,47 +508,6 @@ var level5 ={ "height":15,
                  "width":128,
                  "x":544,
                  "y":256
-                }, 
-                {
-                 "ellipse":true,
-                 "height":32,
-                 "name":"player",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":32,
-                 "y":416
-                }, 
-                {
-                 "ellipse":true,
-                 "height":32,
-                 "name":"goal",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":736,
-                 "y":416
-                }, 
-                {
-                 "height":479,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"fixture",
-                 "visible":true,
-                 "width":797,
-                 "x":2,
-                 "y":2
                 }],
          "opacity":1,
          "type":"objectgroup",
