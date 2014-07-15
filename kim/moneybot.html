@@ -8,7 +8,9 @@
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
     <link rel="stylesheet" href="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/v0.1.1/jquery.mobile.datepicker.css" />
-    <script src="https://rawgithub.com/jquery/jquery-ui/1.10.4/ui/jquery.ui.datepicker.js"></script>
+    
+<link rel="stylesheet" href="monBot-theme.min.css" />
+<script src="https://rawgithub.com/jquery/jquery-ui/1.10.4/ui/jquery.ui.datepicker.js"></script>
     <script id="mobile-datepicker" src="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/v0.1.1/jquery.mobile.datepicker.js"></script>
     <style>
       .expense{
@@ -165,14 +167,19 @@
         var tacc = $("#accSelect").val();
         var tcat = $("#categorySelect").val();
         var tinc = $("#incomeSelect").val();
-        var tamount = $("#amountSelect").val();
-        //transactions[transactions.length] = "lemon";
-        console.log(tdate);
-        console.log(tacc);
-        console.log(tcat);
-        console.log(tinc);
-        console.log(tamount);
-        console.log(transactions[5].date + " " + transactions[5].category + " " + transactions[5].amount + " " + transactions[5].account + " " + transactions[5].income);
+        var tamount = parseFloat($("#amountSelect").val());
+        var ti = (tinc == "true") ? true : false;
+        
+        transactions.push({
+          category : tcat,
+          date: tdate,
+          account: tacc,
+          income: ti,
+          amount: tamount
+        });
+        
+        
+        console.log(transactions);
       }
       
         
@@ -323,17 +330,17 @@
       </div>
     </div>
     <script>
-      $("#mainAcc").on("pageinit", function(event) {
+      $("#mainAcc").on("pagebeforeshow", function(event) {
         displayTransactions("main")
         $("#mainClosingBal").html("Closing Balance " + calculateBalance("main"))
       })
       
-      $("#billAcc").on("pageinit", function(event) {
+      $("#billAcc").on("pagebeforeshow", function(event) {
         displayTransactions("billing")
         $("#billClosingBal").html("Closing Balance " + calculateBalance("billing"))
       })
       
-      $("#wallet").on("pageinit", function(event) {
+      $("#wallet").on("pagebeforeshow", function(event) {
         displayTransactions("wallet")
         $("#walletClosingBal").html("Closing Balance " + calculateBalance("wallet"))
       })
