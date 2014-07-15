@@ -124,6 +124,13 @@
         
         currentRecipe = i;
         
+        $.mobile.navigate( "#recipedetails" );
+      }
+      
+      function refreshCake () {
+         
+        var i = currentRecipe;
+         
         $("#recipename").text(recipe[i].name);
 
         /* Key to cake shapes
@@ -137,8 +144,8 @@
         else selectedShape = 2; // rectangular
         
         $("#newcakeshape").prop("selectedIndex", selectedShape);
-        $("#newcakelength").val(recipe[i].length);
-        $("#newcakewidth").val(recipe[i].width);
+        $("#newcakelength").val(recipe[i].length).slider('refresh');
+        $("#newcakewidth").val(recipe[i].width).slider('refresh');
         
         $("#recipeingredients").html('');
         
@@ -149,16 +156,10 @@
         $.mobile.navigate( "#recipedetails" );
       }
 
-      function recipeingredients(i) {
-        $("#ingredients").html('');
-        $("#recipe").html("<p><b> The " + recipe[i].size + recipe[i].unit + recipe[i].shape + " version of this cake requires: </b></p > ");
-        for (j = 0; j < recipe[i].ingredients.length; j++) {
-          $("#ingredients").append(" < p > " + recipe[i].ingredients[j].amount + recipe[i].ingredients[j].unit + recipe[i].ingredients[j].name + " < /p>");
-        }
-      }
 
       function calculate() {
-        
+        var i = currentRecipe;
+        console.log("working");
         var newshape = $("#newcakeshape");
         var newlength = $("#newcakelength");
         var newwidth = $("#newcakewidth");
@@ -168,9 +169,9 @@
         $("#ingredients").html('');
         $("#recipe").html("<p><b>" + recipe[i].name + " (" + multiplier + "x)</b > would require the following ingredients: < /p>");
         
-        $.(each(recipe[currentRecipe].ingredients,function (i, item) {
+        $.each(recipe[currentRecipe].ingredients,function (i, item) {
           $("#ingredients").append("<p>" + item.amount * multiplier + " " + item.unit + " " + item.name + "</p > ");
-        }));
+        });
       }
 
     </script>
@@ -195,13 +196,14 @@
       </div>
       <div data-role="main" class="ui-content">
         <h3 id="recipename"></h3>
-        <label>Width<input type="range" onchange="calculate" min="0" max="100" step="1" id="newcakewidth"/></label>
-        <label>Length<input type="range" onchange="calculate" min="0" max="100" step="1" id="newcakelength"/></label>
-        <select id="newcakeshape" onchange="calculate">
+        <select id="newcakeshape" onchange="calculate()">
           <option>round</option>
           <option>square</option>
           <option>rectangle</option>
         </select>
+        <label>Width (cm)<input type="range" onchange="calculate()" min="0" max="100" step="1" id="newcakewidth"/></label>
+        <label>Length (cm)<input type="range" onchange="calculate()" min="0" max="100" step="1" id="newcakelength"/></label>
+        <h3>Required ingredients</h3>
         <ul id="recipeingredients"></ul>
         <br/>
         <a href="#homepage" data-role="button">Home</a>
@@ -267,6 +269,10 @@
     <script>
       $("#homepage").on("pageshow", function(event) {
         listRecipes();
+      })
+      
+      $("#recipedetails").on("pageshow", function(event) {
+        refreshCake();
       })
     </script>
     
