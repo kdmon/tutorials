@@ -8,7 +8,7 @@
     <script src="Box2dWeb-2.1.a.3.js"></script>
     <script src="jquery-1.8.2.min.js"></script>
     <script src="stats.min.js"></script>
-    <script src="level1easy.js"></script>
+    <script src="anglevel.js"></script>
     
     <style>z
       body {
@@ -278,11 +278,12 @@
         this.isHit = true;
         if (this.id == "player" && source.id == "player") {}
         else if (this.id == "player" && source.id == "goal") {
-          alert ("Well done, you won!");
+          window.location.replace('mazetrail.html#welldone');
+          //alert ("Well done, you won!");
           // bug: todo: fix: can trigger during simulation step, thus crash. 
           // Add to event list to be executed on next frame.
           //init(); //box.setPosition("player", new b2Vec2(0,0));
-          scene.load(levelmap2);
+          //scene.load(levelmap2);
         }
         
       }
@@ -962,7 +963,7 @@
       stats.domElement.style.left = '0px';
       stats.domElement.style.top = '0px';
       document.body.appendChild(stats.domElement);
-      scene.load(level1)
+      scene.load(levelmap)
     </script>
     
   </body>
