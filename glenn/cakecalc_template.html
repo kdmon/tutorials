@@ -78,7 +78,7 @@
         newcake.shape = $("#cakeshape").val();
         newcake.width = $("#cakewidth").val();
         newcake.length = $("#cakelength").val();
-        newcake.ingredients = {};
+        newcake.ingredients = [];
         
         // Show ingredients page
         $.mobile.navigate( "#addingredients" );
@@ -86,6 +86,24 @@
       };
       
       function addIngredient () {
+        
+        var ingredient = {
+          name : $("#ingredient").val(),
+          amount : $("#quantity").val(),
+          unit : $("#unit").val()
+        };
+        
+        newcake.ingredients.push (ingredient);
+        
+        $("#addedingredients").html('')
+        $.each(newcake.ingredients, function (i,item) {
+          $("#addedingredients").append('<li>' + item.amount + ' ' + item.unit + ' ' + item.name + '</li>')
+        });
+        
+        $("#ingredient").val('');
+        $("#quantity").val('');
+        $("#unit").val('');
+        
         /* This function should: 
         
         1. add entered ingredients to the newcake object 
@@ -159,18 +177,16 @@
 
       function calculate() {
         var i = currentRecipe;
-        console.log("working");
+        
         var newshape = $("#newcakeshape");
         var newlength = $("#newcakelength");
         var newwidth = $("#newcakewidth");
         
-        var multiplier = $()
+        var multiplier = 5; // fix calculation algoritm
         
-        $("#ingredients").html('');
-        $("#recipe").html("<p><b>" + recipe[i].name + " (" + multiplier + "x)</b > would require the following ingredients: < /p>");
-        
-        $.each(recipe[currentRecipe].ingredients,function (i, item) {
-          $("#ingredients").append("<p>" + item.amount * multiplier + " " + item.unit + " " + item.name + "</p > ");
+        $("#recipeingredients").html('');
+        $.each(recipe[i].ingredients, function(i,item) {
+          $("#recipeingredients").append('<li>' + item.amount * multiplier + ' ' + item.unit + ' ' + item.name + '</a>');
         });
       }
 
@@ -236,6 +252,7 @@
         </div>
         <!--2 text boxes length & width identified as cm with X between them-->
         <a href="#" data-role="button" onclick="addCake()">Add Ingredients</a>
+        <a href="#homepage" data-role="button">Cancel</a>
       </div>
     </div>
     <div data-role="page" id="addingredients">
@@ -246,6 +263,10 @@
         <p>Add ingredients, quantities and units below:</p>
         <div class="ui-field-contain">
           <fieldset data-role="controlgroup">
+            <legend>Ingredient name:</legend>
+            <input type="text" id="ingredient" />
+          </fieldset>
+          <fieldset data-role="controlgroup">
             <legend>Quantity:</legend>
             <input type="text" id="quantity" />
           </fieldset>
@@ -253,13 +274,9 @@
             <legend>Unit:</legend>
             <input type="text" id="unit" />
           </fieldset>
-          <fieldset data-role="controlgroup">
-            <legend>Name:</legend>
-            <input type="text" id="ingredient" />
-          </fieldset>
         </div>
         <a href="#" data-role="button" onclick="addIngredient()">Add Ingredient</a>
-        <div id="addedingredients"></div>
+        <ul id="addedingredients"></ul>
         <a href="#" onclick="saveCake()" data-role="button" >Cake Finished!</a>
         <a href="#homepage" data-role="button">Home</a>
       </div>
