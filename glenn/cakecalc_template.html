@@ -68,6 +68,7 @@
 
       // Global variable used to temporarily store cake being added
       var newcake = {};
+      var currentRecipe = 0; // keeps track of currently displayed recipe
         
       function addCake() {
         newcake = {};  // Remove any previously entered cake
@@ -115,15 +116,29 @@
         
         recipe.push (newcake);
         
-        console.log(recipe)
-        
         $.mobile.navigate( "#homepage" );
       }
 
 
       function showRecipe (i) {
         
+        currentRecipe = i;
+        
         $("#recipename").text(recipe[i].name);
+
+        /* Key to cake shapes
+          0 - round
+          1 - square
+          2 - rectangular
+        */
+        
+        var selectedShape = 0; // default is round
+        if (recipe[i].shape == "square") selectedShape = 1
+        else selectedShape = 2; // rectangular
+        
+        $("#newcakeshape").prop("selectedIndex", selectedShape);
+        $("#newcakelength").val(recipe[i].length);
+        $("#newcakewidth").val(recipe[i].width);
         
         $("#recipeingredients").html('');
         
@@ -142,13 +157,22 @@
         }
       }
 
-      function calculate(multiplier, i) {
+      function calculate() {
+        
+        var newshape = $("#newcakeshape");
+        var newlength = $("#newcakelength");
+        var newwidth = $("#newcakewidth");
+        
+        var multiplier = $()
+        
         $("#ingredients").html('');
         $("#recipe").html("<p><b>" + recipe[i].name + " (" + multiplier + "x)</b > would require the following ingredients: < /p>");
-        for (j = 0; j < recipe[i].ingredients.length; j++) {
-          $("#ingredients").append("<p>" + recipe[i].ingredients[j].amount * multiplier + " " + recipe[i].ingredients[j].unit + " " + recipe[i].ingredients[j].name + "</p > ");
-        }
+        
+        $.(each(recipe[currentRecipe].ingredients,function (i, item) {
+          $("#ingredients").append("<p>" + item.amount * multiplier + " " + item.unit + " " + item.name + "</p > ");
+        }));
       }
+
     </script>
   </head>
 
@@ -167,13 +191,20 @@
     </div>
     <div data-role="page" id="recipedetails">
       <div data-role="header">
-        <h1 id="recipename"></h1>
+        <h1>Recipe details</h1>
       </div>
       <div data-role="main" class="ui-content">
-        <h3>Ingredients:</h3>
+        <h3 id="recipename"></h3>
+        <label>Width<input type="range" onchange="calculate" min="0" max="100" step="1" id="newcakewidth"/></label>
+        <label>Length<input type="range" onchange="calculate" min="0" max="100" step="1" id="newcakelength"/></label>
+        <select id="newcakeshape" onchange="calculate">
+          <option>round</option>
+          <option>square</option>
+          <option>rectangle</option>
+        </select>
         <ul id="recipeingredients"></ul>
-        <h4>What size would you like to make the cake? (centimetres)</h4>
-        <input type="range" min="10" max="36" value="18" step="1" /> <a href="#homepage" data-role="button">Home</a>
+        <br/>
+        <a href="#homepage" data-role="button">Home</a>
       </div>
     </div>
     <div data-role="page" id="addcake">
