@@ -198,6 +198,11 @@
         var oldlength = recipe[i].length;
         
         var multiplier = ((newlength*newwidth)/(oldlength*oldwidth)); // fix calculation algoritm
+        //var multiplier = ((newlength*newwidth)/(oldlength*oldwidth)); // fix calculation algoritm
+        //if (recipe[i].cakeshape === "square" || recipe[i].cakeshape === "rectangular") {
+        //    var multiplier = ((newlength*newwidth)/(oldlength*oldwidth)); }
+        //else { var multiplier = (Math.PI*((newlength/2)*(newlength/2))/(Math.PI*((oldlength/2)*(oldlength/2)) }
+        
         
         $("#recipeingredients").html('');
         $.each(recipe[i].ingredients, function(i,item) {
