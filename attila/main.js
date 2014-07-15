@@ -1,6 +1,6 @@
 // Instructions pop up "made by me:-)"
 function myFunction() {
-  alert("<ul><li>To help Charley across the obstacles, touch to jump!</li><li>To start the game, touch the bear!</li></ul>");
+  alert("To help Charley across the obstacles, touch to jump! To start the game, touch the bear!");
 }
 // Initialize Phaser, and creates a 400x490px game
 var game = new Phaser.Game(800, 980, Phaser.AUTO, 'game_div');
