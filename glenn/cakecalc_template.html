@@ -158,10 +158,11 @@
         */
         
         var selectedShape = 0; // default is round
-        if (recipe[i].shape == "square") selectedShape = 1
-        else selectedShape = 2; // rectangular
+        if (recipe[i].shape == "square") selectedShape = 1;
+        else if (recipe[i].shape == "rectangle") selectedShape = 2; // rectangular
         
         $("#newcakeshape").prop("selectedIndex", selectedShape);
+        
         $("#newcakelength").val(recipe[i].length).slider('refresh');
         $("#newcakewidth").val(recipe[i].width).slider('refresh');
         
@@ -178,15 +179,19 @@
       function calculate() {
         var i = currentRecipe;
         
-        var newshape = $("#newcakeshape");
-        var newlength = $("#newcakelength");
-        var newwidth = $("#newcakewidth");
+        var newshape = $("#newcakeshape").val();
         
-        var multiplier = 5; // fix calculation algoritm
+        var newlength = $("#newcakelength").val();
+        var newwidth = $("#newcakewidth").val();
+        
+        var oldwidth = recipe[i].width;
+        var oldlength = recipe[i].length;
+        
+        var multiplier = ((newlength*newwidth)/(oldlength*oldwidth)); // fix calculation algoritm
         
         $("#recipeingredients").html('');
         $.each(recipe[i].ingredients, function(i,item) {
-          $("#recipeingredients").append('<li>' + item.amount * multiplier + ' ' + item.unit + ' ' + item.name + '</a>');
+          $("#recipeingredients").append('<li>' + Math.round(item.amount * multiplier) + ' ' + item.unit + ' ' + item.name + '</a>');
         });
       }
 
@@ -199,8 +204,6 @@
         <h1>Recipes</h1>
       </div>
       <div data-role="main" class="ui-content">
-        <div id="recipe"></div>
-        <div id="ingredients"></div>
         <a href="#addcake" data-role="button" data-icon="plus" data-iconpos="right">Add Recipe</a>
         <p align="center">Saved Recipes:</p>
         <div id="savedrecipes"></div>
